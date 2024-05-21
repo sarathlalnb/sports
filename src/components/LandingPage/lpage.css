@@ -1,0 +1,32 @@
+.container-box{
+    height: 92vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background: url('../../assest/pexels-guduru-ajay-bhargav-863988.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.head-box{
+    margin: 0px 0px 50px 50px;
+    color: white;
+}
+.head-box h2{
+ font-size: 35px;
+}
+.head-box h1{
+    margin-top: -40px;
+    font-size: 65px;
+}
+.startbtn{
+  font-size: 30px;  
+  background: none;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 100px;
+}
+.startbtn:hover{
+    background-color: white;
+}
