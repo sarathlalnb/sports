@@ -41,7 +41,7 @@ function Aside({asideObj}) {
               style={{padding: '20px 5px'}}
             >
               <Stack direction="row" spacing={2}>
-          <Avatar alt="Collage" src="/static/images/avatar/1.jpg" /> <h5 className='mt-2'>Collage</h5>
+          <Avatar alt="College" src="/static/images/avatar/1.jpg" /> <h5 className='mt-2'>College</h5>
         </Stack>
             </div>
         </Link>

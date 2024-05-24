@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 import { Link } from 'react-router-dom';
 import { FaAngleDoubleRight } from "react-icons/fa";
-import logo from '../../assest/pexels-pixabay-220383.jpg'
+import logo from '../../../assest/pexels-pixabay-209841.jpg'
 
 const Footer = () => {
 	return (

@@ -1,5 +1,4 @@
 import React from "react";
-import Header from "../../Header/Header";
 import "./Home.css";
 import {
   MDBCard,
@@ -11,19 +10,18 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import { Col, Container, Row } from "react-bootstrap";
-import Aside from "../../Aside/Aside";
+import Aside from "../../Common Components/Aside/Aside";
 import Post from "./Post";
 
 const Home = () => {
   const fetchAsideItems = () => {
     const asideObj = [
-      { text: "Dashboard", link: "/", icon: "th-large" },
+      { text: "Dashboard", link: "/college-home", icon: "th-large" },
       {
         text: "Requests",
-        link: "/allProjects",
+        link: "/college/request",
         icon: "sticky-note",
-      },
-      { text: "My Projects", link: "/innovator/projects", icon: "th-large" },
+      }
     ];
 
     return <Aside asideObj={asideObj} />;
@@ -33,7 +31,7 @@ const Home = () => {
       <div> {fetchAsideItems()}</div>
       <Container className="mt-4 home-body">
         <div>
-          <div className="text-start event-head mb-4 sticky-top" >
+          <div className="text-start event-head mb-4 sticky-top">
             <h3>
               <b>Available Events</b>
             </h3>
