@@ -12,9 +12,9 @@ function Auth() {
     username: "",
     email: "",
     password: "",
-    isuser: false,
-    issponser: false,
-    iscollege: false,
+    is_user: false,
+    is_sponser: false,
+    is_college: false,
   });
 
   const navigate = useNavigate();
@@ -23,9 +23,9 @@ function Auth() {
     setSignUpMode(!signUpMode);
     setUserdata({
       ...userdata,
-      isuser: true,
-      iscollege: false,
-      issponser: false,
+      is_user: true,
+      is_college: false,
+      is_sponser: false,
     });
   };
 
@@ -36,33 +36,34 @@ function Auth() {
     if (tabIndex === 1) {
       setUserdata({
         ...userdata,
-        isuser: true,
-        iscollege: false,
-        issponser: false,
+        is_user: true,
+        is_college: false,
+        is_sponser: false,
       });
     } else if (tabIndex === 2) {
       setUserdata({
         ...userdata,
-        isuser: false,
-        iscollege: true,
-        issponser: false,
+        is_user: false,
+        is_college: true,
+        is_sponser: false,
       });
     } else if (tabIndex === 3) {
       setUserdata({
         ...userdata,
-        isuser: false,
-        iscollege: false,
-        issponser: true,
+        is_user: false,
+        is_college: false,
+        is_sponser: true,
       });
     } else {
       setUserdata({
         ...userdata,
-        isuser: false,
-        iscollege: false,
-        issponser: false,
+        is_user: false,
+        is_college: false,
+        is_sponser: false,
       });
     }
   };
+  console.log(userdata);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -71,9 +72,9 @@ function Auth() {
       username,
       email,
       password,
-      isuser,
-      issponser,
-      iscollege,
+      is_user,
+      is_sponser,
+      is_college,
     } = userdata;
     try {
       if (!actual_name || !username || !email || !password) {
@@ -83,48 +84,72 @@ function Auth() {
         console.log(result.data);
         if (result.status >= 200 && result.status <= 300) {
           toast.success("Registration success");
-
+          console.log(result.data);
           setUserdata({
             actual_name: "",
             username: "",
             email: "",
             password: "",
           });
+          setSignUpMode(false);
         } else {
           alert(result.response.data);
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const { username, password } = userdata;
-    if (!username || !password) {
-      toast.info("Please fill in all the fields.");
-    } else {
-      const result = await loginAPI(userdata); // Assuming loginAPI is a function that sends login request
-      console.log(result);
-      if (result.status === 200) {
-        toast.success("Logged in");
-        sessionStorage.setItem(
-          "existingUser",
-          JSON.stringify(result.data.existingUser)
-        );
-        sessionStorage.setItem("token", result.data.token);
-        setUserdata({
-          username: "",
-          password: "",
-        });
-        setTimeout(() => {
-          navigate("/");
-        }, 2500);
+    try {
+      if (!username || !password) {
+        toast.info("Please fill in all the fields.");
       } else {
-        toast.success(result.response.data);
+        const result = await loginAPI(userdata); // Assuming loginAPI is a function that sends login request
+        if (result.status >= 200 && result.status <= 300) {
+         
+          // localStorage.setItem(
+          //   "existingUser",
+          //   JSON.stringify(result.data.existingUser)
+          // );
+
+          localStorage.setItem("token", result.data.token);
+          setUserdata({
+            username: "",
+            password: "",
+          });
+          if (result.data?.is_college){
+            navigate('/college-home')
+            toast.success("Logged in to College");
+            
+          }
+          else if (result.data?.is_sponsor){
+            navigate('/sponsor/home')
+            toast.success("Logged in Sponser");
+          }
+          else if(result?.data?.is_student
+          ){
+            navigate('/athletes/home')
+            toast.success("Logged in athletes");
+          }
+          else if(result?.data?.superuser){
+            toast.success("Welcome Admin");
+          }
+           console.log(result.data);
+          // setTimeout(() => {
+          //   navigate("/");
+          // }, 2500);
+        } else {
+          toast.success(result.response.data);
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
   };
-  console.log(userdata);
   return (
     <>
       <div className="main-authdiv">
@@ -306,14 +331,13 @@ function Auth() {
 
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
         theme="light"
       />
     </>
