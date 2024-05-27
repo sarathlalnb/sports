@@ -13,7 +13,7 @@ import pic11 from '../../../assest/pexels-pixabay-209841.jpg'
 function Gallery() {
   return (
     <>
-    <div className='mt-5'><h1 style={{fontFamily:'sans-serif'}}>Gallery</h1></div>
+    <div className='mt-5 text-center'><h1 style={{fontFamily:'sans-serif'}}>Gallery</h1></div>
     <div  style={{display:'flex',alignItems:'center',justifyContent:'space-evenly'}}>
 
 
