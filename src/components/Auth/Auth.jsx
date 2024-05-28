@@ -299,7 +299,7 @@ function Auth() {
                   onChange={() => handleTabChange(3)}
                 />
                 <label className="tab" htmlFor="radio-3">
-                  Sposnser
+                  Sponser
                 </label>
               </div>
             </div>

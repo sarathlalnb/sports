@@ -1,0 +1,14 @@
+.body1{
+    background-color: black;
+    font-family: "Nanum Myeongjo", serif;}
+.asideBody{
+    background-image:linear-gradient(to right, #212122, #000000) !important;
+   height: 100vh !important;
+   width: 30%;
+   color: white;
+}
+.siteName{
+   letter-spacing: .5rem !important;
+   font-weight: 700 !important;
+   font-family: monospace;
+}

@@ -8,6 +8,7 @@ import { SponsorHome } from "./components/Sponsors/SponsorHome/SponsorHome";
 import { AthletesHome } from "./components/Athletes/AthletesHome";
 import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
 import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
+import AdminHome from "./components/Admin/AdminHome";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Landingpage />} />
           <Route path="/auth" element={<Auth />} />
+{/*admin */}
+
+<Route path="/admin-home"  element={<AdminHome></AdminHome>} ></Route>
 
           {/* College */}
           <Route path="/college-home" element={<Home />} />
