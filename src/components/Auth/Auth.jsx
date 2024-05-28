@@ -17,7 +17,7 @@ function Auth() {
     is_college: false,
   });
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const toggleSignUp = () => {
     setSignUpMode(!signUpMode);
