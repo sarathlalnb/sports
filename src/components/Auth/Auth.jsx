@@ -16,7 +16,7 @@ function Auth() {
     is_sponser: false,
     is_college: false,
   });
-  //dasdas
+  
 
   const navigate = useNavigate();
 
