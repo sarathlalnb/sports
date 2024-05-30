@@ -16,6 +16,7 @@ function Auth() {
     is_sponser: false,
     is_college: false,
   });
+  
 
   const navigate = useNavigate();
 
