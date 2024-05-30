@@ -27,6 +27,28 @@ function Event() {
  </div>
 <div>
 
+<div  className='event2 mt-5 ms-5'>
+  <Row className='m-2 p-3'>
+  <Col>
+  
+  </Col>
+  <Col>
+  <img className='ms-3' style={{width:"100%",height:"100%"}} src="https://i.postimg.cc/wMV35n04/running-poster-design-runners-realism-260nw-2345202327.webp" alt="" />
+  </Col>
+  </Row>
+</div>
+<div  className='event2 mt-5 ms-5'>
+ <Row className='m-2 p-3 text-white' >
+  <Col>
+
+  <div className='text-white'>
+  <i class="fa-regular fa-calendar"></i>  </div>
+   </Col>
+  <Col>
+  <img className='ms-3' style={{width:"100%",height:"100%"}} src="https://i.postimg.cc/wMV35n04/running-poster-design-runners-realism-260nw-2345202327.webp" alt="" />
+  </Col>
+  </Row>
+</div>
 
 </div>
       </Container> <div className='text-center'> 
@@ -39,7 +61,7 @@ function Event() {
 <Col>
 
 <div>
-<img className='text-center' style={{width:"60%",height:"60%"}} src="https://i.postimg.cc/vBb9w7gn/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg" alt="" />
+<img className='text-center mt-3' style={{width:"100%",height:"100%"}} src="https://i.postimg.cc/vBb9w7gn/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg" alt="" />
 
 </div>
         
@@ -75,13 +97,14 @@ function Event() {
 
 
 
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
           <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          Add
           </Button>
         </Modal.Footer>
       </Modal></div>

@@ -11,3 +11,6 @@ border-bottom: red  !important ;
 .c1{
     border-color: black;
 }
+.event2{
+    border: 2px solid white;
+}
