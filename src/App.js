@@ -10,6 +10,7 @@ import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
 import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
+import RequestAdmin from "./components/Admin/RequestAdmin";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
 
 <Route path="/admin-home"  element={<AdminHome></AdminHome>} ></Route>
 <Route path="/admin-event"  element={<Event></Event>} ></Route>
-
+<Route path="/admin-request"  element={<RequestAdmin></RequestAdmin>} ></Route>
           {/* College */}
           <Route path="/college-home" element={<Home />} />
           <Route path="/college/request" element={<Request />}></Route>

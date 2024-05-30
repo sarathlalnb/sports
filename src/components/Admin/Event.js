@@ -5,7 +5,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "@mui/material/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-
+import { Link } from "react-router-dom";
 function Event() {
   const [show, setShow] = useState(false);
 
@@ -16,7 +16,8 @@ function Event() {
       <Container className="m-2 p-4 ">
         <div>
           <h1 className="text-center">Events</h1>
-
+          <Link  to="/admin-home" style={{textDecoration:"none",color:"white"}} > 
+          <i  class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
           <div className="text-center ">
             <Button
               variant="contained"
