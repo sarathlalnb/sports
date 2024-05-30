@@ -20,6 +20,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
 
 function AdminHome() {
   return (
@@ -36,7 +37,8 @@ function AdminHome() {
             </CDBSidebarHeader>
             <CDBSidebarContent>
               <CDBSidebarMenu>
-                <CDBSidebarMenuItem icon='book'>Events</CDBSidebarMenuItem>
+                <Link  style={{textDecoration:"none"}} to="/admin-event" > 
+                <CDBSidebarMenuItem   icon='book'>Events</CDBSidebarMenuItem> </Link>
                 <CDBSidebarMenuItem icon='book'>Requests</CDBSidebarMenuItem>
               </CDBSidebarMenu>
             </CDBSidebarContent>
@@ -68,11 +70,9 @@ function AdminHome() {
       <Table sx={{ minWidth: 150 }} aria-label="simple table" >
         <TableHead>
           <TableRow>
-            <TableCell>Dessert </TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell >College Name</TableCell>
+            <TableCell >E-mail</TableCell>
+            <TableCell >Date Joined</TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='text-center'>
@@ -81,15 +81,11 @@ function AdminHome() {
              
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                VZV
+              <TableCell component="th" scope="row">Ilahia College </TableCell>
+              <TableCell >ilahia@gmail.com </TableCell>
+              <TableCell>
+                24/07/2024
               </TableCell>
-            
-
-              <TableCell >asf</TableCell>
-              <TableCell>fdfa</TableCell>
-              <TableCell >sad</TableCell>
-              <TableCell >aff</TableCell>
             </TableRow>
          
         </TableBody>
@@ -112,11 +108,10 @@ function AdminHome() {
       <Table sx={{ minWidth: 150 }} aria-label="simple table" >
         <TableHead>
           <TableRow>
-            <TableCell>Dessert </TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Name </TableCell>
+            <TableCell >Age</TableCell>
+            <TableCell >Adm No</TableCell>
+            <TableCell >Phone Number</TableCell>
           </TableRow>
         </TableHead>
         <TableBody className='text-center'>
@@ -126,14 +121,13 @@ function AdminHome() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                VZV
+               Ajinsa
               </TableCell>
             
 
-              <TableCell >asf</TableCell>
-              <TableCell>fdfa</TableCell>
-              <TableCell >sad</TableCell>
-              <TableCell >aff</TableCell>
+              <TableCell >68</TableCell>
+              <TableCell>2334</TableCell>
+              <TableCell >1234567891</TableCell>
             </TableRow>
          
         </TableBody>

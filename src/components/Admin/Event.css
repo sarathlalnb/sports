@@ -1,0 +1,17 @@
+.event1{
+    background-color: black;
+    color: white;
+    height: auto;
+}
+.e1{
+    width:20%;
+    height:20%;
+background-color: #A52A2A !important;
+border-bottom: red  !important ;
+}
+.c1{
+    border-color: black;
+}
+.event2{
+    border: 2px solid white;
+}
