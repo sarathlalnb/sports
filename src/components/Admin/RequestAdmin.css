@@ -1,3 +1,12 @@
-.r1{
-    background-color: black;
-}
+
+.table-fixed {
+    table-layout: fixed;
+    width: 50%;
+  }
+  
+  .table-fixed th, .table-fixed td {
+    width: 15%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  

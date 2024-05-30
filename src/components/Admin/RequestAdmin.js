@@ -1,21 +1,20 @@
 import React from 'react'
 import './RequestAdmin.css'
 import Table from 'react-bootstrap/Table';
-import { Container } from 'react-bootstrap';
-
+import Button from '@mui/material/Button';
 function RequestAdmin() {
   return (
     <div className='r1'>
      
 
-<div ><h1 className='text-center mt-3 '>Requests</h1></div>
-      <Table className='' striped bordered hover size="sm">
+<div className='m-5' ><h1 style={{color:"Black"}} className='text-center mt-3 '>Requests</h1>
+      <Table className='mt-4 text-center' striped bordered hover size="sm">
       <thead>
         <tr>
           <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Sponsor</th>
+          <th>E-mail</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -23,22 +22,18 @@ function RequestAdmin() {
           <td>1</td>
           <td>Mark</td>
           <td>Otto</td>
-          <td>@mdo</td>
+          <td>
+
+
+          <Button  style={{backgroundColor:"green",color:"white"}}>Approve</Button>
+          <Button className='mx-2'  style={{backgroundColor:"Red",color:"white"}}>Reject</Button>
+
+          </td>
         </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        
       </tbody>
     </Table>
-
+    </div>
      
     </div>
   )
