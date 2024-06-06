@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './AdminHome.css';
 import { Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
@@ -21,8 +21,41 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
+import { collegeListApi, userListApi } from '../Services/Allapis';
 
 function AdminHome() {
+  const [collegeList, setCollegeList] = useState(null);
+  const [userList, setUserList] = useState(null);
+
+  const getCollegeList = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await collegeListApi(reqHeader);
+      setCollegeList(result.data);
+    }
+  };
+
+  const getUserList = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await userListApi(reqHeader); 
+      setUserList(result.data);
+    }
+  };
+
+  useEffect(() => {
+    getUserList();
+    getCollegeList();
+  }, []);
+
+  if (collegeList === null ) return <></>;
+if (userList===null) return <></>
   return (
     <div className='body1'>
       <Row>
@@ -37,10 +70,12 @@ function AdminHome() {
             </CDBSidebarHeader>
             <CDBSidebarContent>
               <CDBSidebarMenu>
-                <Link  style={{textDecoration:"none"}} to="/admin-event" > 
-                <CDBSidebarMenuItem   icon='book'>Events</CDBSidebarMenuItem> </Link>
-                <Link  style={{textDecoration:"none"}} to="/admin-request" > 
-                <CDBSidebarMenuItem   icon='book'>Requests</CDBSidebarMenuItem> </Link>
+                <Link style={{ textDecoration: "none" }} to="/admin-event">
+                  <CDBSidebarMenuItem icon='book'>Events</CDBSidebarMenuItem>
+                </Link>
+                <Link style={{ textDecoration: "none" }} to="/admin-request">
+                  <CDBSidebarMenuItem icon='book'>Requests</CDBSidebarMenuItem>
+                </Link>
               </CDBSidebarMenu>
             </CDBSidebarContent>
             <CDBSidebarFooter style={{ textAlign: 'center' }}>
@@ -63,77 +98,57 @@ function AdminHome() {
           </Navbar>
           <Row className="justify-content-center mt-4">
             <Col md={6}>
-              <div className='text-center ' style={{backgroundColor: "#000000",borderRadius:"10px"}}>
-               <div className='m-2 p-2' > 
-                <h4  style={{color:"white"}}>College List</h4>
-
-                <TableContainer component={Paper} className='mt-4' >
-      <Table sx={{ minWidth: 150 }} aria-label="simple table" >
-        <TableHead>
-          <TableRow>
-            <TableCell >College Name</TableCell>
-            <TableCell >E-mail</TableCell>
-            <TableCell >Date Joined</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody className='text-center'>
-         
-            <TableRow
-             
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">Ilahia College </TableCell>
-              <TableCell >ilahia@gmail.com </TableCell>
-              <TableCell>
-                24/07/2024
-              </TableCell>
-            </TableRow>
-         
-        </TableBody>
-      </Table>
-    </TableContainer>
-
+              <div className='text-center ' style={{ backgroundColor: "#000000", borderRadius: "10px" }}>
+                <div className='m-2 p-2'>
+                  <h4 style={{ color: "white" }}>College List</h4>
+                  <TableContainer component={Paper} className='mt-4'>
+                    <Table sx={{ minWidth: 150 }} aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell style={{width:"20%"}}>College</TableCell>
+                          <TableCell style={{width:"10%"}}>E-mail</TableCell>
+                          <TableCell  >Date Joined</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {collegeList?.map((i, index) => (
+                          <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableCell component="th" scope="row">{i.first_name}</TableCell>
+                            <TableCell>{i.email}</TableCell>
+                            <TableCell>{i.date_joined.slice(0, 10)}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
                 </div>
-
-
-
-
               </div>
             </Col>
             <Col md={6}>
-              <div className='text-center' style={{backgroundColor: "#000000",borderRadius:"15px"}} >
-                
-                <div className='m-2 p-2' > 
-                <h4 style={{color:"white"}} >User List</h4>
-                <TableContainer component={Paper} className='mt-4' >
-      <Table sx={{ minWidth: 150 }} aria-label="simple table" >
-        <TableHead>
-          <TableRow>
-            <TableCell>Name </TableCell>
-            <TableCell >Age</TableCell>
-            <TableCell >Adm No</TableCell>
-            <TableCell >Phone Number</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody className='text-center'>
-         
-            <TableRow
-             
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-               Ajinsa
-              </TableCell>
-            
-
-              <TableCell >68</TableCell>
-              <TableCell>2334</TableCell>
-              <TableCell >1234567891</TableCell>
-            </TableRow>
-         
-        </TableBody>
-      </Table>
-    </TableContainer></div>
+              <div className='text-center' style={{ backgroundColor: "#000000", borderRadius: "15px" }}>
+                <div className='m-2 p-2'>
+                  <h4 style={{ color: "white" }}>User List</h4>
+                  <TableContainer component={Paper} className='mt-4'>
+                    <Table sx={{ minWidth: 150 }} aria-label="simple table">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Name</TableCell>
+                          <TableCell>Email</TableCell>
+                          <TableCell>Date Joined</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {userList?.map((i, index) => (
+                          <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            <TableCell component="th" scope="row">{i.username}</TableCell>
+                            <TableCell>{i.email}</TableCell>
+                            <TableCell>{i.date_joined.slice(0, 10)}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </div>
               </div>
             </Col>
           </Row>

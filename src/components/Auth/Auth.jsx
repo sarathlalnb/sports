@@ -137,6 +137,7 @@ function Auth() {
             toast.success("Logged in athletes");
           }
           else if(result?.data?.superuser){
+            navigate('/admin-home')
             toast.success("Welcome Admin");
           }
            console.log(result.data);

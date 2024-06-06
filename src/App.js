@@ -5,12 +5,13 @@ import Home from "./components/College/Home/Home";
 import Request from "./components/College/Request/Request";
 import Landingpage from "./components/Common Components/LandingPage/Landingpage";
 import { SponsorHome } from "./components/Sponsors/SponsorHome/SponsorHome";
-import { AthletesHome } from "./components/Athletes/AthletesHome";
 import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
 import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
 import RequestAdmin from "./components/Admin/RequestAdmin";
+import AtheletHome from "./components/Sponsors/AthletesView/AtheletHome";
+import UserProfile from "./components/Sponsors/AthletesView/UserProfile";
 
 function App() {
   return (
@@ -35,7 +36,9 @@ function App() {
 
 
           {/* Athletes */}
-          <Route path="/athletes/home" element={<AthletesHome/>}></Route>
+          <Route path="/athletes-home" element={<AtheletHome/>}></Route>
+          <Route path="/user-profile" element={<UserProfile/>}></Route>
+
         </Routes>
       </BrowserRouter>
     </div>

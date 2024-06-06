@@ -1,8 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './RequestAdmin.css'
 import Table from 'react-bootstrap/Table';
 import Button from '@mui/material/Button';
+import { sponsorListApi } from '../Services/Allapis';
 function RequestAdmin() {
+
+
+  const[request,setRequest]=useState(null)
+
+const getRequest=async()=>{
+  if(localStorage.getItem('token')){
+    const token =localStorage.getItem('token');
+    const reqHeader={
+      Authorization:`Token ${token}`,
+
+    }
+    const result=await sponsorListApi(reqHeader)
+    setRequest(result.data)
+  }
+}
+console.log(token);
+
+useEffect(()=>{
+  getRequest()
+  console.log(token);
+  },[])
+  console.log(request);
+  
+  
+
+
+
+if (request === null) return <></>;
+
   return (
     <div className='r1'>
      
@@ -12,16 +42,24 @@ function RequestAdmin() {
       <thead>
         <tr>
           <th>#</th>
-          <th>Sponsor</th>
+          <th>Sponsor Name</th>
           <th>E-mail</th>
+          <th>Date Joined</th>
           <th>Action</th>
+
         </tr>
       </thead>
+      {request?.map((i,index)=>{
+
+     
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
+        <tr  key={index} >
+          <td>{index+1}</td>
+          <td>{i.username}</td>
+          <td>{i.email}</td>
+          <td>{i.date_joined.slice(0, 10)}</td>
+
+
           <td>
 
 
@@ -31,7 +69,7 @@ function RequestAdmin() {
           </td>
         </tr>
         
-      </tbody>
+      </tbody> })}
     </Table>
     </div>
      
