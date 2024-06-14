@@ -1,8 +1,7 @@
-import React from "react";
-import { Container, Stack, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Container, Table } from "react-bootstrap";
 import Aside from "../../Common Components/Aside/Aside";
-import { Avatar } from "@mui/material";
-
+import { getSponsorApi } from "../../Services/Allapis";
 
 const Request = () => {
   const fetchAsideItems = () => {
@@ -17,6 +16,28 @@ const Request = () => {
 
     return <Aside asideObj={asideObj} />;
   };
+
+  const [sponsor, setSponsor] = useState(null);
+
+  const getSponsor = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await getSponsorApi(reqHeader);
+      setSponsor(result.data);
+    }
+  };
+
+  useEffect(() => {
+    getSponsor();
+  }, []);
+
+  console.log(sponsor);
+
+  if (sponsor === null) return <></>;
+
   return (
     <div className="main-grid">
       <div>{fetchAsideItems()}</div>
@@ -31,23 +52,33 @@ const Request = () => {
           <thead>
             <tr>
               <th>#</th>
-              <th> Name</th>
-              <th>Image</th>
+              <th>Sponsor Name</th>
+              <th>Student Name</th>
+              <th>Payment</th>
+              <th>Action</th>
             </tr>
           </thead>
-          <tbody className="text-center" >
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td >
-                {" "}
-                <Stack  style={{alignItems:'center'}}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                 
-                </Stack>
-              </td>
-             
-            </tr>
+          <tbody className="text-center">
+            {sponsor?.map((i, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{i.sponsor}</td>
+                <td>{i.student}</td>
+                <td>{i.payment}</td>
+                <td>
+                  <Button
+                    style={{
+                      backgroundColor: 'green',
+                      color: 'white',
+                      width: "50%",
+                      height: "50%"
+                    }}
+                  >
+                    Approve
+                  </Button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Container>

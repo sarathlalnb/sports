@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./Event.css";
 import Modal from "react-bootstrap/Modal";
@@ -6,11 +6,30 @@ import Button from "@mui/material/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { getAllEventsApi } from "../Services/Allapis";
 function Event() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const[listEvents,setlistEvents]=useState(null)
+
+
+const getListEvents=async()=>{
+
+ if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = { Authorization: `Token ${token}` };
+      const result = await getAllEventsApi(reqHeader);
+     setlistEvents(result.data);
+    }
+  };
+useEffect(()=>{
+  getListEvents()
+},[])
+console.log(listEvents);
+if (listEvents === null) return <></>;
+
   return (
     <div className="event1">
       <Container className="m-2 p-4 ">
@@ -28,64 +47,36 @@ function Event() {
             </Button>
           </div>
         </div>
-        <div>
+        <div> {listEvents?.map((i)=>(
           <div className="event2 mt-5 ms-5">
             <Row className="m-2 p-3">
               <Col>
-              <div  className="text-white mt-5">
-<h1>  KOCHI MARATHON 2024</h1>
-              <i class="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
- 20/05/2024 10:00 AM <br />
- <i class="fa-solid fa-location-dot ms-3 mt-2 mx-3 "></i>
- Jawaharlal Nehru Auditorium,Ernakulam
+             
 
-<br /><p className="mt-2">Kochi Marathon aims to establish Kochi
- as a prominent global sports tourism hub, drawing participants from both 
- across the nation and around the world. The event endeavours to attract
-  runners of diverse backgrounds and nationalities, showcasing Kochi </p>
+            
+              <div  className="text-white mt-5">
+<h1>  {i.title}</h1>
+              <i class="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
+ {i.date.slice(0, 10)}<br />
+ <i class="fa-solid fa-location-dot ms-3 mt-2 mx-3 "></i>
+ {i.venue}
+
+<br /><p className="mt-2">{i.description} </p>
   <i style={{color:"red"}} class="fa-solid fa-trash"></i>
               </div>
-              
-              </Col>
+             
+              </Col> 
               <Col>
                 <img
                   className="ms-3"
                   style={{ width: "100%", height: "100%" }}
-                  src="https://i.postimg.cc/yd119R1h/Ealing-Half-Marathon-v2-e1490285347258.jpg"
+                  src={i.image}
                   alt=""
                 />
-              </Col>
+              </Col> 
             </Row>
-          </div>
-          <div className="event2 mt-5 ms-5">
-            <Row className="m-2 p-3 text-white">
-            <Col>
-              <div  className="text-white mt-5">
-<h1>  FOOTBALL MATCH 2024</h1>
-              <i class="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
- 25/05/2024 10:00 AM <br />
- <i class="fa-solid fa-location-dot ms-3 mt-2 mx-3 "></i>
-Kaloor Stadium
-
-<br /><p className="mt-2">FootBall  aims to establish Kochi
- as a prominent global sports tourism hub, drawing participants from both 
- across the nation and around the world. The event endeavours to attract
-  runners of diverse backgrounds and nationalities, showcasing Kochi </p>
-  <i style={{color:"red"}} class="fa-solid fa-trash"></i>
-
-              </div>
-              
-              </Col>
-              <Col>
-                <img
-                  className="ms-3"
-                  style={{ width: "100%", height: "100%" }}
-                  src="https://i.postimg.cc/rwHZ52qf/soccer-player-dribbles-soccer-ball-field-football-background-football-match-ai-generated-755721-8270.avif"
-                  alt=""
-                />
-              </Col>
-            </Row>
-          </div>
+          </div>))} 
+         
         </div>
       </Container>{" "}
       <div className="text-center">

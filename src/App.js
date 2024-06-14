@@ -12,6 +12,7 @@ import Event from "./components/Admin/Event";
 import RequestAdmin from "./components/Admin/RequestAdmin";
 import AtheletHome from "./components/Sponsors/AthletesView/AtheletHome";
 import UserProfile from "./components/Sponsors/AthletesView/UserProfile";
+import Post from "./components/College/Home/Post";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           {/* College */}
           <Route path="/college-home" element={<Home />} />
           <Route path="/college/request" element={<Request />}></Route>
-
+<Route path="/post" element={<Post></Post>}></Route>
           {/* Sponsor */}
           <Route path="/sponsor/home" element={<SponsorHome />}></Route>
           <Route path="/sponsor/available-athletes" element={<AthletesView/>}></Route>

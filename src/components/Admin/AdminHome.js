@@ -22,10 +22,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import { collegeListApi, userListApi } from '../Services/Allapis';
+import Pagination from '@mui/material/Pagination';
 
 function AdminHome() {
-  const [collegeList, setCollegeList] = useState(null);
-  const [userList, setUserList] = useState(null);
+  const [collegeList, setCollegeList] = useState([]);
+  const [userList, setUserList] = useState([]);
+  const [collegePage, setCollegePage] = useState(1);
+  const [userPage, setUserPage] = useState(1);
+  const itemsPerPage = 5;
 
   const getCollegeList = async () => {
     if (localStorage.getItem('token')) {
@@ -54,8 +58,17 @@ function AdminHome() {
     getCollegeList();
   }, []);
 
-  if (collegeList === null ) return <></>;
-if (userList===null) return <></>
+  const handleCollegePageChange = (event, value) => {
+    setCollegePage(value);
+  };
+
+  const handleUserPageChange = (event, value) => {
+    setUserPage(value);
+  };
+
+  const paginatedCollegeList = collegeList.slice((collegePage - 1) * itemsPerPage, collegePage * itemsPerPage);
+  const paginatedUserList = userList.slice((userPage - 1) * itemsPerPage, userPage * itemsPerPage);
+
   return (
     <div className='body1'>
       <Row>
@@ -107,11 +120,11 @@ if (userList===null) return <></>
                         <TableRow>
                           <TableCell style={{width:"20%"}}>College</TableCell>
                           <TableCell style={{width:"10%"}}>E-mail</TableCell>
-                          <TableCell  >Date Joined</TableCell>
+                          <TableCell>Date Joined</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {collegeList?.map((i, index) => (
+                        {paginatedCollegeList.map((i, index) => (
                           <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component="th" scope="row">{i.first_name}</TableCell>
                             <TableCell>{i.email}</TableCell>
@@ -121,33 +134,47 @@ if (userList===null) return <></>
                       </TableBody>
                     </Table>
                   </TableContainer>
+                  <Stack spacing={2} className='mt-3'>
+                    <Pagination 
+                      count={Math.ceil(collegeList.length / itemsPerPage)} 
+                      page={collegePage}
+                      onChange={handleCollegePageChange} 
+                      color="primary" 
+                    />
+                  </Stack>
                 </div>
               </div>
             </Col>
             <Col md={6}>
-              <div className='text-center' style={{ backgroundColor: "#000000", borderRadius: "15px" }}>
+              <div className='text-center t' style={{ backgroundColor: "#000000", borderRadius: "15px" }}>
                 <div className='m-2 p-2'>
                   <h4 style={{ color: "white" }}>User List</h4>
                   <TableContainer component={Paper} className='mt-4'>
                     <Table sx={{ minWidth: 150 }} aria-label="simple table">
                       <TableHead>
                         <TableRow>
-                          <TableCell>Name</TableCell>
-                          <TableCell>Email</TableCell>
-                          <TableCell>Date Joined</TableCell>
+                          <TableCell style={{width:"20%"}}>Name</TableCell>
+                          <TableCell align='center'>Email</TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
-                        {userList?.map((i, index) => (
+                        {paginatedUserList.map((i, index) => (
                           <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                             <TableCell component="th" scope="row">{i.username}</TableCell>
-                            <TableCell>{i.email}</TableCell>
-                            <TableCell>{i.date_joined.slice(0, 10)}</TableCell>
+                            <TableCell align='center'>{i.email}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
                     </Table>
                   </TableContainer>
+                  <Stack spacing={2} className='mt-3'>
+                    <Pagination 
+                      count={Math.ceil(userList.length / itemsPerPage)} 
+                      page={userPage} 
+                      onChange={handleUserPageChange} 
+                      color="primary" 
+                    />
+                  </Stack>
                 </div>
               </div>
             </Col>

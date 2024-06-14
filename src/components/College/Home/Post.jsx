@@ -1,27 +1,49 @@
-import React from "react";
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
+import { getAthletesApi } from "../../Services/Allapis";
+import { Container, Row, Col } from 'react-bootstrap';
 
 const Post = () => {
+  const [athletes, setAthletes] = useState(null);
+
+  const getAthletes = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await getAthletesApi(reqHeader);
+      setAthletes(result.data);
+    }
+  };
+
+  useEffect(() => {
+    getAthletes();
+  }, []);
+
+  if (athletes === null) return <></>;
+
   return (
-    <div>
-      <div className="text-start event-head mb-4 mt-4">
+    <Container>
+      <div className="text-center mt-5 mb-5">
         <h3>
-          <b>Available Athletes</b>
+          <b style={{color:"brown"}} >Available Athletes</b>
         </h3>
       </div>
-
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" style={{height:'250px'}} src="https://i.postimg.cc/NG3Mt722/images-1.jpg" />
-        <Card.Body>
-          <Card.Title>Sidharth Suresh</Card.Title>
-          <Card.Text>
-            Good athlete seen so far and have a great knowledge of whats coming next.
-          </Card.Text>
-          <Button variant="primary">View more</Button>
-        </Card.Body>
-      </Card>
-    </div>
+      <Row>
+        {athletes?.map((i) => (
+          <Col md={4} className="d-flex align-items-stretch mb-4" key={i.id}>
+            <Card style={{ width: "25rem" }}>
+              <Card.Img variant="top" style={{ height: '150px' }} src={i.profile_picture} />
+              <Card.Body>
+                <Card.Title><b>Name:</b> {i.first_name}</Card.Title>
+                <Card.Title><b>E-mail:</b> {i.email}</Card.Title>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 

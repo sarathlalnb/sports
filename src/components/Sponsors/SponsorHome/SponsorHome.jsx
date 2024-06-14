@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Aside from "../../Common Components/Aside/Aside";
 import {
   MDBCard,
@@ -10,6 +10,9 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import { Col, Row } from "react-bootstrap";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import { getEventListApi } from "../../Services/Allapis";
 
 export const SponsorHome = () => {
   const fetchAsideItems = () => {
@@ -30,6 +33,33 @@ export const SponsorHome = () => {
     return <Aside asideObj={asideObj} />;
   };
 
+  const [eventList, setEventList] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const eventsPerPage = 2;
+
+  const getEventList = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = { Authorization: `Token ${token}` };
+      const result = await getEventListApi(reqHeader);
+      setEventList(result.data);
+    }
+  };
+
+  useEffect(() => {
+    getEventList();
+  }, []);
+
+  if (eventList === null) return <></>;
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  const indexOfLastEvent = currentPage * eventsPerPage;
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
+  const currentEvents = eventList.slice(indexOfFirstEvent, indexOfLastEvent);
+
   return (
     <div className="main-grid">
       <div>{fetchAsideItems()}</div>
@@ -41,62 +71,37 @@ export const SponsorHome = () => {
         </div>
         <Row>
           <Col>
-            <MDBCard style={{ height: "200px" }} className="mt-3">
-              <MDBRow className="g-0">
-                <MDBCol md="5">
-                  <MDBCardImage
-                    style={{ height: "200px", width: "100%" }}
-                    src="https://i.postimg.cc/wBLRKf0v/images.jpg"
-                    alt="..."
-                  />
-                </MDBCol>
-                <MDBCol md="7">
-                  <MDBCardBody>
-                    <MDBCardTitle>Card title</MDBCardTitle>
-                    <MDBCardText>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </MDBCardText>
-                    <MDBCardText>
-                      <small className="text-muted">
-                        Last updated 3 mins ago
-                      </small>
-                    </MDBCardText>
-                  </MDBCardBody>
-                </MDBCol>
-              </MDBRow>
-            </MDBCard>
-          </Col>
-          <Col>
-            <MDBCard style={{ height: "200px" }} className="mt-3">
-              <MDBRow className="g-0">
-                <MDBCol md="5">
-                  <MDBCardImage
-                    style={{ height: "200px", width: "100%" }}
-                    src="https://i.postimg.cc/wBLRKf0v/images.jpg"
-                    alt="..."
-                  />
-                </MDBCol>
-                <MDBCol md="7">
-                  <MDBCardBody>
-                    <MDBCardTitle>Card title</MDBCardTitle>
-                    <MDBCardText>
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </MDBCardText>
-                    <MDBCardText>
-                      <small className="text-muted">
-                        Last updated 3 mins ago
-                      </small>
-                    </MDBCardText>
-                  </MDBCardBody>
-                </MDBCol>
-              </MDBRow>
-            </MDBCard>
+            {currentEvents.map((i) => (
+              <MDBCard style={{ height: "200px" }} className="mt-3" key={i.id}>
+                <MDBRow className="g-0">
+                  <MDBCol md="5">
+                    <MDBCardImage
+                      style={{ height: "200px", width: "100%" }}
+                      src={i.image}
+                      alt="..."
+                    />
+                  </MDBCol>
+                  <MDBCol md="7">
+                    <MDBCardBody>
+                      <MDBCardTitle>{i.title}</MDBCardTitle>
+                      <MDBCardText>{i.description}</MDBCardText>
+                      <MDBCardText>
+                        <small className="text-muted">{i.date.slice(0, 10)}</small>
+                      </MDBCardText>
+                    </MDBCardBody>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCard>
+            ))}
           </Col>
         </Row>
+        <Stack spacing={2} className="mt-4 d-flex justify-content-center">
+          <Pagination
+            count={Math.ceil(eventList.length / eventsPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+          />
+        </Stack>
       </div>
     </div>
   );
