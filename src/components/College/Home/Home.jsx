@@ -28,7 +28,7 @@ const Home = () => {
 
   const [collegeEvents, setCollegeEvents] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 2;
+  const eventsPerPage = 3;
 
   const getEvents = async () => {
     if (localStorage.getItem('token')) {
@@ -69,8 +69,8 @@ const Home = () => {
                     <MDBCol md="5">
                       <MDBCardImage
                         style={{ height: "200px", width: "100%" }}
-                        src={i.image}
-                        alt="..."
+                        src={`http://127.0.0.1:8000`+i.image}
+                        alt=" "
                       />
                     </MDBCol>
                     <MDBCol md="7">

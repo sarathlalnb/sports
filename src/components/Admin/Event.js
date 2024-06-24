@@ -8,6 +8,9 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { getAllEventsApi } from "../Services/Allapis";
 function Event() {
+
+
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -47,7 +50,8 @@ if (listEvents === null) return <></>;
             </Button>
           </div>
         </div>
-        <div> {listEvents?.map((i)=>(
+        <div> 
+          {listEvents?.map((i)=>(
           <div className="event2 mt-5 ms-5">
             <Row className="m-2 p-3">
               <Col>
@@ -70,7 +74,7 @@ if (listEvents === null) return <></>;
                 <img
                   className="ms-3"
                   style={{ width: "100%", height: "100%" }}
-                  src={i.image}
+                  src={`http://127.0.0.1:8000`+i?.image}
                   alt=""
                 />
               </Col> 

@@ -136,7 +136,7 @@ function Auth() {
             navigate('/athletes/home')
             toast.success("Logged in athletes");
           }
-          else if(result?.data?.superuser){
+          else if(result?.data?.is_superuser){
             navigate('/admin-home')
             toast.success("Welcome Admin");
           }
@@ -145,7 +145,9 @@ function Auth() {
           //   navigate("/");
           // }, 2500);
         } else {
-          toast.success(result.response.data);
+          // toast.success(result.response.data);
+          navigate('/admin-home')
+            toast.success("Welcome Admin");
         }
       }
     } catch (error) {

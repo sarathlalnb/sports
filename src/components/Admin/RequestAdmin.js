@@ -3,10 +3,11 @@ import './RequestAdmin.css';
 import Table from 'react-bootstrap/Table';
 import Button from '@mui/material/Button';
 import { sponsorListApi } from '../Services/Allapis';
+import axios from 'axios';
 
 function RequestAdmin() {
   const [request, setRequest] = useState(null);
-
+  const token = localStorage.getItem('token');
   const getRequest = async () => {
     if (localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
@@ -22,9 +23,26 @@ function RequestAdmin() {
 
   useEffect(() => {
     getRequest();
+
   }, []);
 
   console.log(request);
+
+  const handleReqApproval = async(id)=>{
+    try {
+      const response = await axios.post(`http://127.0.0.1:8000/adminapp/sponsor/${id}/approve_sponsor/`,{},{
+        headers:{
+          Authorization:`Token ${token}`
+        }
+      })
+      if( response.status>=200&& response.status<=300){
+        alert("Req Approved")
+        getRequest()
+      }
+    } catch (error) {
+      console.log(error);
+    } 
+  }
 
   if (request === null) return <></>;
 
@@ -53,7 +71,7 @@ function RequestAdmin() {
                 <td>{i.date_joined.slice(0, 10)}</td>
                 <td>
                   <Button style={{ backgroundColor: 'green', color: 'white' }}
-                  
+                  onClick={()=>handleReqApproval(i?.id)}
                   
                   >Approve</Button> 
                   {/* http://127.0.0.1:8000/adminapp/sponsor/2/approve_sponsor/ */}

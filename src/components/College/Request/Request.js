@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import Aside from "../../Common Components/Aside/Aside";
 import { getSponsorApi } from "../../Services/Allapis";
+import axios from "axios";
 
 const Request = () => {
   const fetchAsideItems = () => {
@@ -18,6 +19,7 @@ const Request = () => {
   };
 
   const [sponsor, setSponsor] = useState(null);
+  const token = localStorage.getItem('token');
 
   const getSponsor = async () => {
     if (localStorage.getItem('token')) {
@@ -29,6 +31,17 @@ const Request = () => {
       setSponsor(result.data);
     }
   };
+  const handleReqApproval = async(id)=>{
+    try {
+      const response = await axios.post(``,{},{headers:{Authorization:"Token "+token}})
+      if( response.status>=200&& response.status<=300){
+        alert("Req Approved")
+        getSponsor()
+      }
+    } catch (error) {
+      
+    }
+  }
 
   useEffect(() => {
     getSponsor();
@@ -73,6 +86,7 @@ const Request = () => {
                       width: "50%",
                       height: "50%"
                     }}
+                    onClick={()=>handleReqApproval(i.id)}
                   >
                     Approve
                   </Button>

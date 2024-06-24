@@ -20,6 +20,7 @@ const Post = () => {
   useEffect(() => {
     getAthletes();
   }, []);
+  console.log(athletes);
 
   if (athletes === null) return <></>;
 
@@ -34,7 +35,7 @@ const Post = () => {
         {athletes?.map((i) => (
           <Col md={4} className="d-flex align-items-stretch mb-4" key={i.id}>
             <Card style={{ width: "25rem" }}>
-              <Card.Img variant="top" style={{ height: '150px' }} src={i.profile_picture} />
+              <Card.Img variant="top" style={{ height: '150px' }} src={`http://127.0.0.1:8000`+i?.profile_picture} />
               <Card.Body>
                 <Card.Title><b>Name:</b> {i.first_name}</Card.Title>
                 <Card.Title><b>E-mail:</b> {i.email}</Card.Title>

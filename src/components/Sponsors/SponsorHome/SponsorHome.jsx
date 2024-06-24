@@ -35,7 +35,7 @@ export const SponsorHome = () => {
 
   const [eventList, setEventList] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 2;
+  const eventsPerPage = 3;
 
   const getEventList = async () => {
     if (localStorage.getItem('token')) {
@@ -43,6 +43,7 @@ export const SponsorHome = () => {
       const reqHeader = { Authorization: `Token ${token}` };
       const result = await getEventListApi(reqHeader);
       setEventList(result.data);
+      console.log(eventList);
     }
   };
 
@@ -77,7 +78,7 @@ export const SponsorHome = () => {
                   <MDBCol md="5">
                     <MDBCardImage
                       style={{ height: "200px", width: "100%" }}
-                      src={i.image}
+                      src={`http://127.0.0.1:8000`+i.image}
                       alt="..."
                     />
                   </MDBCol>
