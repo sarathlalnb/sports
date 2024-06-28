@@ -19,7 +19,9 @@ export const sponsorListApi=async(header)=>{
 export const getAllEventsApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/event/`,"",header)
 }
-
+export const addEventApi=async(data,header)=>{
+    return await commonAPI('POST',`${BaseUrl}/adminapp/event/`,"",header)
+}
 //college
 
 export const collegeEventApi=async(header)=>{
