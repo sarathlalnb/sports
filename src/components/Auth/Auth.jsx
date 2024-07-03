@@ -7,26 +7,26 @@ import { useNavigate } from "react-router-dom";
 
 function Auth() {
   const [signUpMode, setSignUpMode] = useState(false);
-  const [userdata, setUserdata] = useState({
+  const [userdata, setUserdata] = useState({  
     actual_name: "",
     username: "",
     email: "",
     password: "",
     is_user: false,
-    is_sponser: false,
+    is_sponsor: false,
     is_college: false,
   });
   
 
   const navigate = useNavigate();
-
+ 
   const toggleSignUp = () => {
     setSignUpMode(!signUpMode);
     setUserdata({
       ...userdata,
       is_user: true,
       is_college: false,
-      is_sponser: false,
+      is_sponsor: false,
     });
   };
 
@@ -39,28 +39,28 @@ function Auth() {
         ...userdata,
         is_user: true,
         is_college: false,
-        is_sponser: false,
+        is_sponsor: false,
       });
     } else if (tabIndex === 2) {
       setUserdata({
         ...userdata,
         is_user: false,
         is_college: true,
-        is_sponser: false,
+        is_sponsor: false,
       });
     } else if (tabIndex === 3) {
       setUserdata({
         ...userdata,
         is_user: false,
         is_college: false,
-        is_sponser: true,
+        is_sponsor: true,
       });
     } else {
       setUserdata({
         ...userdata,
         is_user: false,
         is_college: false,
-        is_sponser: false,
+        is_sponsor: false,
       });
     }
   };
@@ -74,7 +74,7 @@ function Auth() {
       email,
       password,
       is_user,
-      is_sponser,
+      is_sponsor,
       is_college,
     } = userdata;
     try {
@@ -109,56 +109,44 @@ function Auth() {
       if (!username || !password) {
         toast.info("Please fill in all the fields.");
       } else {
-        const result = await loginAPI(userdata); // Assuming loginAPI is a function that sends login request
+        const result = await loginAPI(userdata);
         if (result.status >= 200 && result.status <= 300) {
-         
-          // localStorage.setItem(
-          //   "existingUser",
-          //   JSON.stringify(result.data.existingUser)
-          // );
-
           localStorage.setItem("token", result.data.token);
           setUserdata({
             username: "",
             password: "",
           });
-          if (result.data?.is_college){
-            navigate('/college-home')
+  
+          if (result.data?.is_college) {
+            navigate('/college-home');
             toast.success("Logged in to College");
-            
-          }
-          else if (result.data?.is_sponsor){
-            navigate('/sponsor/home')
-            toast.success("Logged in Sponser");
-          }
-          else if(result?.data?.is_student
-          ){
-            navigate('/athletes/home')
+          } else if (result.data?.is_sponsor) {
+            navigate('/sponsor/home');
+            toast.success("Logged in Sponsor");
+          } else if (result.data?.is_student) {
+            navigate('/athletes/home');
             toast.success("Logged in athletes");
-          }
-          else if(result?.data?.is_superuser){
-            navigate('/admin-home')
+          } else if (result.data?.is_superuser) {
+            navigate('/admin-home');
             toast.success("Welcome Admin");
           }
-           console.log(result.data);
-          // setTimeout(() => {
-          //   navigate("/");
-          // }, 2500);
+          console.log(result.data);
         } else {
-          // toast.success(result.response.data);
-          navigate('/admin-home')
-            toast.success("Welcome Admin");
+          // Handle other statuses if needed
+          toast.error(result.response.data);
         }
       }
     } catch (error) {
       console.log(error);
+      toast.error("Login failed");
     }
   };
+  
   return (
     <>
       <div className="main-authdiv">
         <form className="form">
-          <h1>{signUpMode ? "Sign Up" : "Sign In"}</h1>
+          <h1 className="text-center">{signUpMode ? "Sign Up" : "Sign In"}</h1>
 
           {signUpMode && (
             <>
@@ -312,15 +300,7 @@ function Auth() {
         
         <span className="span">Forgot password?</span>
       </div> */}
-          {signUpMode ? "Already have an account? " : "Don't have an account? "}
-          <button
-            type="button"
-            className="signuptoggler"
-            onClick={toggleSignUp}
-          >
-            {signUpMode ? "Sign In" : "Sign Up"}
-          </button>
-
+          
           {signUpMode ? (
             <button className="button-submit" onClick={handleRegister}>
               Register
@@ -330,6 +310,19 @@ function Auth() {
               Login
             </button>
           )}
+<span className="mt-1 mb-2">
+          {signUpMode ? "Already have an account? " : "Don't have an account? "}
+          <button 
+            type="button"
+            className="signuptoggler"
+            onClick={toggleSignUp}
+          >
+            {signUpMode ? "Sign In" : "Sign Up"}
+          </button></span>
+
+         
+         
+
         </form>
       </div>
 

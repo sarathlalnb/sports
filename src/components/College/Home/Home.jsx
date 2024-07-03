@@ -21,7 +21,8 @@ const Home = () => {
       { text: "Dashboard", link: "/college-home", icon: "th-large" },
       { text: "Requests", link: "/college/request", icon: "sticky-note" },
       { text: "Athletes", link: "/post", icon: "sticky-note" },
-
+      { text: "Student Registration", link: "/college/studentreg", icon: "sticky-note" },
+      { text: "Student ", link: "/college/studentreg", icon: "sticky-note" },
     ];
     return <Aside asideObj={asideObj} />;
   };
