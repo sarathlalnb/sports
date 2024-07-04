@@ -112,6 +112,7 @@ function Auth() {
         const result = await loginAPI(userdata);
         if (result.status >= 200 && result.status <= 300) {
           localStorage.setItem("token", result.data.token);
+          localStorage.setItem("uId", result.data.id);
           setUserdata({
             username: "",
             password: "",
@@ -269,10 +270,9 @@ function Auth() {
                   name="tabs"
                   checked={activeTab === 1}
                   onChange={() => handleTabChange(1)}
+
                 />
-                <label className="tab" htmlFor="radio-1">
-                  User
-                </label>
+                
                 <input
                   type="radio"
                   id="radio-2"

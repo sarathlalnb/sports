@@ -1,0 +1,30 @@
+
+
+
+#maindiv{
+    background-image: url(https://img.freepik.com/free-photo/view-empty-soccer-stadium-with-fantasy-dreamy-sky_23-2151563039.jpg?t=st=1719997434~exp=1720001034~hmac=da27d0ab2d764024fa49de5694dea6221da35aa65ee3c2f9e418f1e2d581709a&w=1060);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+
+
+  
+}
+
+#outerdiv{
+    background-color: rgba(240, 248, 255, 0.371);
+    border-radius: 20px;
+   
+   
+}
+#innerdiv{
+    background-color: rgba(240, 248, 255, 0.552);
+    border-radius: 20px;
+    width: auto;
+    margin: 20px;
+ 
+ 
+    
+    }

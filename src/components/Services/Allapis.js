@@ -33,7 +33,10 @@ export const getAthletesApi=async(header)=>{
 export const getSponsorApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,"",header)
 }
-
+export const studentregApi=async(header)=>{
+    return await commonAPI('POST',`${BaseUrl}/collegeapp/studregister/`,header,"")
+}
+ 
 //sponsor
 
 export const getEventListApi=async(header)=>{
