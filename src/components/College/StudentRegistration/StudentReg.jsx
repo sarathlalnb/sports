@@ -13,15 +13,17 @@ function StudentReg() {
     username: "",
     email: "",
     password: "",
+    gender:"",
+    age:""
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const { first_name, username, email, password } = userdata;
+    const { first_name, username, email, password,gender,age} = userdata;
 
-    if (!first_name || !username || !email || !password) {
+    if (!first_name || !username || !email || !password || !gender || !age) {
       alert("Please fill the details completely");
       return;
     }
@@ -31,6 +33,8 @@ function StudentReg() {
       username: userdata.username,
       email: userdata.email,
       password: userdata.password,
+      gender: userdata.gender,
+      age: userdata.age,
       college_id: pId
 
     }
@@ -47,6 +51,8 @@ function StudentReg() {
           username: "",
           email: "",
           password: "",
+          gender:"",
+          age:""
         });
       } else {
         console.log("API error:", result.data);
@@ -80,8 +86,6 @@ function StudentReg() {
                   Please provide a valid First name.
                 </Form.Control.Feedback>
               </Form.Group>
-            </Row>
-            <Row className="mb-3">
               <Form.Group as={Col} md="6" controlId="validationCustom03">
                 <Form.Label className='text-white'>Username</Form.Label>
                 <Form.Control
@@ -96,6 +100,7 @@ function StudentReg() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
+           
             <Row className="mb-3">
               <Form.Group as={Col} md="6" controlId="validationCustom03">
                 <Form.Label className='text-white'>Password</Form.Label>
@@ -110,8 +115,6 @@ function StudentReg() {
                   Please provide a valid Password.
                 </Form.Control.Feedback>
               </Form.Group>
-            </Row>
-            <Row className="mb-3">
               <Form.Group as={Col} md="6" controlId="validationCustom03">
                 <Form.Label className='text-white '>Email</Form.Label>
                 <Form.Control
@@ -126,6 +129,39 @@ function StudentReg() {
                 </Form.Control.Feedback>
               </Form.Group>
             </Row>
+            <Row className="mb-3">
+            <Form.Group as={Col} md="6" controlId="validationCustom03">
+  <Form.Label className='text-white'>Gender</Form.Label>
+  <Form.Select
+    value={userdata.gender}
+    onChange={(e) => setUserdata({ ...userdata, gender: e.target.value })}
+    required
+  >
+    <option value="">Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </Form.Select>
+  <Form.Control.Feedback type="invalid">
+    Please provide gender.
+  </Form.Control.Feedback>
+</Form.Group>
+
+              <Form.Group as={Col} md="6" controlId="validationCustom03">
+                <Form.Label className='text-white '>Age</Form.Label>
+                <Form.Control
+                  type="age"
+                  placeholder="age"
+                  value={userdata.age}
+                  onChange={(e) => setUserdata({ ...userdata, age: e.target.value })}
+                  required
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please provide age
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Row>
+        
             <Form.Group className="mb-3">
               <Form.Check
                 className='text-white'
