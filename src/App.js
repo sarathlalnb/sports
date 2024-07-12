@@ -10,8 +10,9 @@ import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
 import RequestAdmin from "./components/Admin/RequestAdmin";
-import AtheletHome from "./components/Sponsors/AthletesView/AtheletHome";
-import UserProfile from "./components/Sponsors/AthletesView/UserProfile";
+import AtheletHome from "./components/Athletes/AtheletHome";
+import UserProfile from "./components/Athletes/UserProfile";
+import Editlist from "./components/Athletes/Eventlist"
 import Post from "./components/College/Home/Post";
 import StudentReg from "./components/College/StudentRegistration/StudentReg";
 import Studentlist from "./components/College/Studentlist/Studentlist";
@@ -43,6 +44,7 @@ function App() {
           {/* Athletes */}
           <Route path="/athletes-home" element={<AtheletHome/>}></Route>
           <Route path="/user-profile" element={<UserProfile/>}></Route>
+          <Route path="/Editlist" element={<Editlist/>}></Route>
 
         </Routes>
       </BrowserRouter>
