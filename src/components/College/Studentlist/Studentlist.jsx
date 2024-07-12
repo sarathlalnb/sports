@@ -1,80 +1,60 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import'./studentlist.css'
+import './studentlist.css';
+import { studentlistApi } from '../../Services/Allapis';
+
 function Studentlist() {
+  const [Studentlist, setStudentlist] = useState([]);
+  
+  const getStudentlist = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await studentlistApi(reqHeader); 
+     
+      setStudentlist(result.data);
+     
+    }
+  };
+
+  useEffect(() => {
+    getStudentlist();
+  }, []);
+
   return (
-
-<div className='text-center' id='maindiv'>
-
-<div className='col-3'></div>
-
-<div className='text-center '  id='innerdiv' >
-    <h4>Student List</h4>
-
-
-
-    <div id='outerdiv' className='m-2'>
-    <Table className='text-center ' >
-
-<thead>
- <tr >
-   <th>Id</th>
-   <th>Student Name</th>
-   <th>College</th>
-   <th>Username</th>
-   <th>Scolarship</th>
-   
- </tr>
-</thead>
-<tbody>
- <tr>
-   <td>1</td>
-   <td>Mark</td>
-   <td>Otto</td>
-   <td>@mdo</td>
-   <td>@mdo</td>
- </tr>
- <tr>
-   <td>2</td>
-   <td>Jacob</td>
-   <td>Thornton</td>
-   <td>@fat</td>
-   <td>@mdo</td>
- </tr>
- <tr>
-   <td>3</td>
-   <td colSpan={2}>Larry the Bird</td>
-   <td>@twitter</td>
-   <td>@mdo</td>
-   
- </tr>
-</tbody>
-</Table>
-
+    <div className='text-center' id='maindiv'>
+      <div className='col-3'></div>
+      <div className='text-center' id='innerdiv'>
+        <h4>Student List</h4>
+        <div id='outerdiv' className='m-2'>
+          <Table className='text-center'>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Student Name</th>
+                <th>Email</th>
+                <th>Username</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              {Studentlist.map((student, index) => (
+                <tr key={index}>
+                  <td>{student.id}</td>
+                  <td>{student.first_name}</td>
+                  <td>{student.email}</td>
+                  <td>{student.username}</td>
+                 
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      </div>
     </div>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-  )
+  );
 }
 
-export default Studentlist
+export default Studentlist;

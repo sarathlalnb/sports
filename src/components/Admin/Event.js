@@ -52,12 +52,6 @@ const handleAdd=async(e)=>{
   }else{
 
 
-
-const reqHeader={
-  "access_token":`Token ${token}`,
-  "Content-Type":"multipart/form-data"
-}
-
 try {
   const reqBody=new FormData()
 reqBody.append("title",title)
@@ -66,7 +60,7 @@ reqBody.append("date",date)
 reqBody.append("description",description)
 reqBody.append("image",image)
 
-const result =await  addEventApi(reqBody,reqHeader)
+const result =await  addEventApi(reqBody)
 console.log(result);
 } catch (error) {
   console.log(error);

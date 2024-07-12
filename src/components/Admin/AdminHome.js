@@ -86,9 +86,10 @@ function AdminHome() {
                 <Link style={{ textDecoration: "none" }} to="/admin-event">
                   <CDBSidebarMenuItem icon='book'>Events</CDBSidebarMenuItem>
                 </Link>
-                <Link style={{ textDecoration: "none" }} to="/admin-request">
-                  <CDBSidebarMenuItem icon='book'>Requests</CDBSidebarMenuItem>
+                <Link style={{ textDecoration: "none" }} to="/admin-winner">
+                  <CDBSidebarMenuItem icon='book'>Winners</CDBSidebarMenuItem>
                 </Link>
+                
               </CDBSidebarMenu>
             </CDBSidebarContent>
             <CDBSidebarFooter style={{ textAlign: 'center' }}>
