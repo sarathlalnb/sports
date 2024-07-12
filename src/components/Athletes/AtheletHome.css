@@ -1,0 +1,17 @@
+.event-head{
+    background-color: rgb(16, 57, 203);
+    color: rgb(41, 30, 30);
+    border-left: 15px solid rgb(231, 109, 180);
+    padding: .6%;
+}
+.main-grid{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+}
+.home-body{
+    height: 100vh;
+    overflow-y: scroll;
+}
+::-webkit-scrollbar{
+    color: azure;
+}

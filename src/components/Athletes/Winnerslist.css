@@ -1,0 +1,30 @@
+
+
+
+#maindiv2{
+    background-image: url(https://wallpapers.com/images/featured/football-stadium-background-wpbk2e4mrt3gz1mz.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+
+
+  
+}
+
+#outerdiv{
+    background-color: rgba(240, 248, 255, 0.371);
+    border-radius: 20px;
+   
+   
+}
+#innerdiv{
+    background-color: rgba(240, 248, 255, 0.552);
+    border-radius: 20px;
+    width: auto;
+    margin: 20px;
+ 
+ 
+    
+    }

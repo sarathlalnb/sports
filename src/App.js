@@ -12,10 +12,10 @@ import Event from "./components/Admin/Event";
 import RequestAdmin from "./components/Admin/RequestAdmin";
 import AtheletHome from "./components/Athletes/AtheletHome";
 import UserProfile from "./components/Athletes/UserProfile";
-import Editlist from "./components/Athletes/Eventlist"
 import Post from "./components/College/Home/Post";
 import StudentReg from "./components/College/StudentRegistration/StudentReg";
 import Studentlist from "./components/College/Studentlist/Studentlist";
+import Winnerslist from "./components/Athletes/Winnerslist";
 
 function App() {
   return (
@@ -44,7 +44,8 @@ function App() {
           {/* Athletes */}
           <Route path="/athletes-home" element={<AtheletHome/>}></Route>
           <Route path="/user-profile" element={<UserProfile/>}></Route>
-          <Route path="/Editlist" element={<Editlist/>}></Route>
+          <Route path="/Winnerslist" element={<Winnerslist/>}></Route>
+          
 
         </Routes>
       </BrowserRouter>
