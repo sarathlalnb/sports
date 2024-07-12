@@ -1,6 +1,5 @@
-import { commonAPI } from "../../services/commonAPI";
+import { CmommonAPI, commonAPI } from "../../services/commonAPI";
 import { BaseUrl } from "./BaseUrl";
-
 
 
 //admin
@@ -20,8 +19,12 @@ export const getAllEventsApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/event/`,"",header)
 }
 export const addEventApi=async(data,header)=>{
-    return await commonAPI('POST',`${BaseUrl}/adminapp/event/`,"",header)
+    return await CmommonAPI('POST',`${BaseUrl}/adminapp/event/`,data,header)
 }
+export const getAllwinnersApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/adminapp/winner/`,"",header)
+}
+
 //college
 
 export const collegeEventApi=async(header)=>{
@@ -37,8 +40,12 @@ export const studentregApi=async(header)=>{
     return await commonAPI('POST',`${BaseUrl}/collegeapp/studregister/`,header,"")
 }
 export const studentlistApi=async(header)=>{
-    return await commonAPI('GET',`${BaseUrl}/collegeapp/studregister/`,header,"")
+    return await commonAPI('GET',`${BaseUrl}/collegeapp/student/`,header,"")
 }
+// export const sponsorlistApi=async(header)=>{
+//     return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,header,"")
+// }
+
  
 //sponsor
 

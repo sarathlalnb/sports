@@ -9,13 +9,18 @@ import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
 import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
-import RequestAdmin from "./components/Admin/RequestAdmin";
+
+
+
 import AtheletHome from "./components/Sponsors/AthletesView/AtheletHome";
 import UserProfile from "./components/Sponsors/AthletesView/UserProfile";
 import Post from "./components/College/Home/Post";
 import StudentReg from "./components/College/StudentRegistration/StudentReg";
 import Studentlist from "./components/College/Studentlist/Studentlist";
-
+import RequestCollege from "./components/College/SponserApprove/RequestCollege";
+import Sponsorlist from "./components/College/Sponsor/Sponsorview"
+import Sponsorview from "./components/College/Sponsor/Sponsorview";
+import Winner from "./components/Admin/Winner";
 function App() {
   return (
     <div className="App">
@@ -27,13 +32,16 @@ function App() {
 
 <Route path="/admin-home"  element={<AdminHome></AdminHome>} ></Route>
 <Route path="/admin-event"  element={<Event></Event>} ></Route>
-<Route path="/admin-request"  element={<RequestAdmin></RequestAdmin>} ></Route>
+<Route path="/admin-winner"  element={<Winner></Winner>} ></Route>
+
           {/* College */}
           <Route path="/college-home" element={<Home />} />
           <Route path="/college/request" element={<Request />}></Route>
           <Route path="/college/studentreg" element={<StudentReg />}></Route>
           <Route path="/college/studentlist" element={<Studentlist />}></Route>
+          <Route path="/college-request"  element={<RequestCollege></RequestCollege>} ></Route>
 <Route path="/post" element={<Post></Post>}></Route>
+<Route path="/college/sponsorview" element={<Sponsorview />}></Route>
           {/* Sponsor */}
           <Route path="/sponsor/home" element={<SponsorHome />}></Route>
           <Route path="/sponsor/available-athletes" element={<AthletesView/>}></Route>
