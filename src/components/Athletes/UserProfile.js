@@ -1,5 +1,5 @@
 import React from 'react'
-import Aside from "../../Common Components/Aside/Aside";
+import Aside from "../Common Components/Aside/Aside";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
   import { Col, Row } from "react-bootstrap";
@@ -30,10 +30,7 @@ function UserProfile() {
 <h3 className='mt-3'>Anitha Thomas <i style={{color:"green",fontSize:"15px"}} class="fa-solid fa-1x fa-pen-to-square"></i> </h3>
 </div>
 
-
 </Col>
-
-
 </Row> 
 <Row className='m-3 p-3'>
     <Col>
@@ -47,8 +44,6 @@ function UserProfile() {
       <FloatingLabel controlId="floatingPassword" label="Password">
         <Form.Control type="password" placeholder="Password" />
       </FloatingLabel>
-    
-    
     </Col>
     <Col>
     

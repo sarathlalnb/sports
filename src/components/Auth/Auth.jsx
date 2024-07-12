@@ -125,7 +125,7 @@ function Auth() {
             navigate('/sponsor/home');
             toast.success("Logged in Sponsor");
           } else if (result.data?.is_student) {
-            navigate('/athletes/home');
+            navigate('/athletes-home');
             toast.success("Logged in athletes");
           } else if (result.data?.is_superuser) {
             navigate('/admin-home');
