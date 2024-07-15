@@ -31,7 +31,7 @@ function AtheletHome() {
 
   const [athletesEvents, setAthletesEvents] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 3;
+  const eventsPerPage = 4;
 
   const getEvents = async () => {
     if (localStorage.getItem('token')) {

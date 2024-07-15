@@ -63,3 +63,11 @@ export const athletesEventApi=async(header)=>{
 export const winnerslistApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/athleteapp/winner/`,"",header)
 }
+
+export const profileApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/profile/`,header,"")
+}
+
+export const mySponsorApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/sponsor/`,header,"")
+}

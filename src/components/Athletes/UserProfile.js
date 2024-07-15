@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Aside from "../Common Components/Aside/Aside";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
   import { Col, Row } from "react-bootstrap";
+import { profileApi } from '../Services/Allapis';
 
 function UserProfile() {
     const fetchAsideItems = () => {
@@ -18,6 +19,22 @@ function UserProfile() {
     
         return <Aside asideObj={asideObj} />;
       };
+     
+      const getProfile = async () => {
+        if (localStorage.getItem('token')) {
+          const token = localStorage.getItem('token');
+          const reqHeader = { Authorization: `Token ${token}` };
+          const result = await profileApi(reqHeader);
+          console.log(result);
+         // setAthletesEvents(result.data);
+        }
+      };
+
+      useEffect(() => {
+        getProfile();
+      }, []);
+
+
   return (
     <div className="main-grid">
        <div>{fetchAsideItems()}</div>

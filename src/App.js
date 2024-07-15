@@ -9,21 +9,20 @@ import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
 import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
-import RequestAdmin from "./components/Admin/RequestAdmin";
+// import RequestAdmin from "./components/Admin/RequestAdmin";
 import AtheletHome from "./components/Athletes/AtheletHome";
 import UserProfile from "./components/Athletes/UserProfile";
 import Post from "./components/College/Home/Post";
 import StudentReg from "./components/College/StudentRegistration/StudentReg";
 import Studentlist from "./components/College/Studentlist/Studentlist";
-<<<<<<< HEAD
-import Winnerslist from "./components/Athletes/Winnerslist";
-
-=======
 import RequestCollege from "./components/College/SponserApprove/RequestCollege";
 import Sponsorlist from "./components/College/Sponsor/Sponsorview"
 import Sponsorview from "./components/College/Sponsor/Sponsorview";
 import Winner from "./components/Admin/Winner";
->>>>>>> 8f3a8cbc7efcd2ca1cf52512df33cc3d7d0d2082
+import Winnerslist from "./components/Athletes/Winnerslist";
+import Mysponsor from "./components/Athletes/Mysponsor";
+
+
 function App() {
   return (
     <div className="App">
@@ -55,6 +54,7 @@ function App() {
           <Route path="/athletes-home" element={<AtheletHome/>}></Route>
           <Route path="/user-profile" element={<UserProfile/>}></Route>
           <Route path="/Winnerslist" element={<Winnerslist/>}></Route>
+          <Route path="/mysponsorslist" element={<Mysponsor/>}></Route>
           
 
         </Routes>
