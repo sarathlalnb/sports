@@ -9,7 +9,7 @@ import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
 import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
-import RequestAdmin from "./components/Admin/RequestAdmin";
+// import RequestAdmin from "./components/Admin/RequestAdmin";
 import AtheletHome from "./components/Athletes/AtheletHome";
 import UserProfile from "./components/Athletes/UserProfile";
 import Editlist from "./components/Athletes/Eventlist"
