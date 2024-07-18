@@ -24,6 +24,9 @@ export const addEventApi=async(data,header)=>{
 export const getAllwinnersApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/winner/`,"",header)
 }
+export const addWinnerApi=async(data)=>{
+    return await CmommonAPI('POST',`${BaseUrl}/adminapp/winner/`,"",data)
+}
 
 //college
 
@@ -52,6 +55,10 @@ export const studentlistApi=async(header)=>{
 export const getEventListApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/sponsorapp/event/`,"",header)
 }
+export const getStudentListApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/sponsorapp/student/`,header,"")
+}
+
 
 
 //Athletes

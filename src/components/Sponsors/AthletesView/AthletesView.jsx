@@ -1,8 +1,31 @@
 import React from "react";
 import Aside from "../../Common Components/Aside/Aside";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getStudentListApi } from "../../Services/Allapis";
+
 
 export const AthletesView = () => {
+
+  const [Studentlist, setStudentlist] = useState([]);
+  
+  const getStudentlist = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await  getStudentListApi(reqHeader); 
+     
+      setStudentlist(result.data);
+     
+    }
+  };
+
+  useEffect(() => {
+    getStudentlist();
+  }, []);
   const fetchAsideItems = () => {
     const asideObj = [
       { text: "Dashboard", link: "/sponsor/home", icon: "th-large" },
@@ -19,6 +42,8 @@ export const AthletesView = () => {
     ];
 
     return <Aside asideObj={asideObj} />;
+
+
   };
   return (
     <div className="main-grid">
@@ -29,77 +54,24 @@ export const AthletesView = () => {
             <b>Available Athletes</b>
           </h3>
         </div>
-
-        <Row>
-          <Col>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                style={{ height: "250px" }}
-                src="https://i.postimg.cc/NG3Mt722/images-1.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Virat Kohli</Card.Title>
-                <Card.Text>
-                  Good athlete seen so far and have a great knowledge of whats
-                  coming next.
-                </Card.Text>
-                <Button variant="primary">View more</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                style={{ height: "250px" }}
-                src="https://i.postimg.cc/NG3Mt722/images-1.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Virat Kohli</Card.Title>
-                <Card.Text>
-                  Good athlete seen so far and have a great knowledge of whats
-                  coming next.
-                </Card.Text>
-                <Button variant="primary">View more</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                style={{ height: "250px" }}
-                src="https://i.postimg.cc/NG3Mt722/images-1.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Virat Kohli</Card.Title>
-                <Card.Text>
-                  Good athlete seen so far and have a great knowledge of whats
-                  coming next.
-                </Card.Text>
-                <Button variant="primary">View more</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card style={{ width: "18rem" }}>
-              <Card.Img
-                variant="top"
-                style={{ height: "250px" }}
-                src="https://i.postimg.cc/NG3Mt722/images-1.jpg"
-              />
-              <Card.Body>
-                <Card.Title>Virat Kohli</Card.Title>
-                <Card.Text>
-                  Good athlete seen so far and have a great knowledge of whats
-                  coming next.
-                </Card.Text>
-                <Button variant="primary">View more</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+<div > <Row className="m-5" >
+          {Studentlist.map((student, index) => (
+            <Col key={index} className="m-2">
+              <Card style={{ width: "18rem" }}>
+               
+                <Card.Body>
+                  <Card.Title>{student.first_name}</Card.Title>
+                  <Card.Text>ID: {student.id}</Card.Text>
+                  <Card.Text>Email: {student.email}</Card.Text>
+                  <Card.Text>Username: {student.username}</Card.Text>
+                 
+                 <button className="btn btn-outline-primary">Sponsor</button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row></div>
+       
       </div>
     </div>
   );

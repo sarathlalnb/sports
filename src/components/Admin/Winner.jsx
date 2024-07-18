@@ -64,43 +64,119 @@ import React, { useState } from 'react'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import './Winner.css';
+import { addWinnerApi } from '../Services/Allapis';
+
 
 
 function Winner() {
 
-  const [id,setId] =useState('');
-  const [name,setName] =useState('');
-  const [college,setCollege] =useState('');
-  const [username,setUsername] =useState('');
-  const [scholarship,setScholarship] =useState('');
+  const [addWinner, setAddWinner] = useState({
+    first_name: "",
+    username: "",
+    email: "",
+    password: "",
+    gender:"",
+    age:""
+  })
+
+
+
+  const handleAdd = async (e) => {
+    e.preventDefault()
+    const {  first_name, username, email, password,gender,age} = addWinner
+    if (!first_name || !username || !email || !password || !gender || !age) {
+      alert("please fill properly")
+    } 
+    const pId = localStorage.getItem("uId");
+    const payload = {
+      first_name: addWinner.first_name,
+      username: addWinner.username,
+      email: addWinner.email,
+      password: addWinner.password,
+      gender: addWinner.gender,
+      age: addWinner.age,
+      college_id: pId 
+    }
+    try {
+      const result = await addWinnerApi(payload);
+      console.log("API response:", result);
+      if (result.status >= 200 && result.status <= 300) {
+        alert("Registration success");
+        setUserdata({
+          first_name: "",
+          username: "",
+          email: "",
+          password: "",
+          gender:"",
+          age:""
+        });
+
+    }else{
+      console.log("API error:", result.data);
+      alert(result.data);
+
+
+     
+    }
+  } catch (error) {
+    console.log("API call failed:", error);
+    alert("Winner Adding failed. Please try again.");
+  }
+
+  }
+
+
+
+
+
+
+
+
   return (
     <div  className='text-center' id='maindiv'>
       <div className='card shadow m-5 p-5'>
       <h2 className='text-center m-4 text-dark' >Winners List</h2>
 
-<FloatingLabel controlId="floatingInput" label="Id" className="mb-3">
+<FloatingLabel controlId="floatingInput" label="Iirst_name" className="mb-3">
 
-  <Form.Control type="text" placeholder="78909-78987"  />
+  <Form.Control type="text"  value={addWinner.first_name}
+                  onChange={(e) => setAddWinner({ ...addWinner, first_name: e.target.value })}
+                  required  placeholder="78909-78987"  />
 </FloatingLabel>
 
-<FloatingLabel controlId="name" label="Name"  className="mb-3">
-  <Form.Control type="text" placeholder="Name of Employee"   />
+<FloatingLabel controlId="name" label="Username"  className="mb-3">
+  <Form.Control type="text"   placeholder="Username"
+                  value={addWinner.username}
+                  onChange={(e) => setAddWinner({ ...addWinner, username: e.target.value })}
+                  required   />
 </FloatingLabel>
 
-<FloatingLabel controlId="floatingInput" label="College" className="mb-3">
-  <Form.Control type="text" placeholder="College"  />
+
+
+<FloatingLabel controlId="floatingInput" label="Email" className="mb-3">
+  <Form.Control  type="email"
+                  placeholder="Email"
+                  value={addWinner.email}
+                  onChange={(e) => setAddWinner({ ...addWinner, email: e.target.value })}
+                  required />
 </FloatingLabel>
 
-<FloatingLabel controlId="floatingInput" label="Username" className="mb-3">
-  <Form.Control type="text" placeholder="username"  />
+<FloatingLabel controlId="floatingInput" label="gender" className="mb-3">
+  <Form.Control  value={addWinner.gender}
+    onChange={(e) => setAddWinner({ ...addWinner, gender: e.target.value })}
+    required />
 </FloatingLabel>
 
-<FloatingLabel controlId="floatingInput" label="Scholarship" className="mb-3">
-  <Form.Control type="text" placeholder="scholarship"  />
+<FloatingLabel controlId="floatingInput" label="age" className="mb-3">
+  <Form.Control      type="age"
+                  placeholder="age"
+                  value={addWinner.age}
+                  onChange={(e) => setAddWinner({ ...addWinner, age: e.target.value })}
+                  required />
 </FloatingLabel>
 
 <div className='text-center'>
-<button className='btn btn-primary px-1 py-1'>Add</button>
+<button  onClick={(e) => handleAdd(e)} className='btn btn-primary px-1 py-1'>Add</button>
 </div>
       </div>
     </div>

@@ -32,7 +32,12 @@ function Event() {
       const token = localStorage.getItem('token');
       const reqHeader = { Authorization: `Token ${token}` };
       const result = await getAllEventsApi(reqHeader);
-      setlistEvents(result.data);
+ 
+      const messages = result.data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+        );
+console.log(messages);
+setlistEvents(messages);
     }
   };
   useEffect(() => {

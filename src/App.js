@@ -21,6 +21,7 @@ import Sponsorview from "./components/College/Sponsor/Sponsorview";
 import Winner from "./components/Admin/Winner";
 import Winnerslist from "./components/Athletes/Winnerslist";
 import Mysponsor from "./components/Athletes/Mysponsor";
+import StudSpon from "./components/Sponsors/StudentSponsor/StudSpon";
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
           <Route path="/sponsor/home" element={<SponsorHome />}></Route>
           <Route path="/sponsor/available-athletes" element={<AthletesView/>}></Route>
           <Route path="/sponsor/available-college" element={<CollegeView/>}></Route>
-
+          <Route path="/sponsor/sponsered-student" element={<StudSpon/>}></Route>
 
           {/* Athletes */}
           <Route path="/athletes-home" element={<AtheletHome/>}></Route>
