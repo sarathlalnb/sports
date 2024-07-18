@@ -14,11 +14,11 @@ function RequestCollege() {
         const reqHeader = {
           Authorization: `Token ${token}`,
         };
-        const result = await sponsorListApi(reqHeader);
+        const result = await sponsorListApi(reqHeader); 
         setRequest(result.data);
       }
     };
-
+ 
     useEffect(() => {
         getRequest();
     
