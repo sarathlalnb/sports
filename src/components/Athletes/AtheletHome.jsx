@@ -11,9 +11,10 @@ import {
   MDBCol,
 } from "mdb-react-ui-kit";
 import { Col, Container, Row } from "react-bootstrap";
-import { athletesEventApi } from '../Services/Allapis';
+import { EventregApi, athletesEventApi } from '../Services/Allapis';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
 
 function AtheletHome() {
   const fetchAsideItems = () => {
@@ -55,6 +56,22 @@ function AtheletHome() {
   const indexOfLastEvent = currentPage * eventsPerPage;
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = athletesEvents.slice(indexOfFirstEvent, indexOfLastEvent);
+
+  
+  
+  const  handleRegister = async (uId) => {
+    const payload = {id:uId};
+    try{
+      const token = localStorage.getItem('token');
+      const reqHeader = { Authorization: `Token ${token}` };
+      const result = await EventregApi(payload,reqHeader);
+      console.log(result);
+    }catch(error){
+      console.log(error);
+    } 
+  }
+
+
   return (
     <div className="main-grid">
       <div>{fetchAsideItems()}</div>
@@ -83,6 +100,7 @@ function AtheletHome() {
                         <MDBCardText>
                           <small className="text-muted">{i.date.slice(0, 10)}</small>
                         </MDBCardText>
+                        <button onClick={() => handleRegister(i.id)} className='btn btn-primary'>Register</button>
                       </MDBCardBody>
                     </MDBCol>
                   </MDBRow>

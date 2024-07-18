@@ -81,3 +81,8 @@ export const mySponsorApi=async(header)=>{
 export const updateAUserprofileAPI=async(data,header)=>{
     return await commonAPI('PUT',`${BaseUrl}/athleteapp/profile/`,data,header)
 }
+
+
+export const EventregApi=async(payload,header)=>{
+    return await commonAPI('POST',`${BaseUrl}/athleteapp/partevent/`,payload,header)
+}
