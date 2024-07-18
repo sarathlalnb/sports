@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Aside from "../Common Components/Aside/Aside";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
   import { Col, Row } from "react-bootstrap";
 import { profileApi } from '../Services/Allapis';
+import Editprofile from './Editprofile';
+import { addprofileResponseContext, updateprofileResponseContext } from '../../ContextAPI/ContextShare';
 
 function UserProfile() {
     const fetchAsideItems = () => {
+
         const asideObj = [
           { text: "All Events", link: "/athletes-home", icon: "th-large" },
           {
@@ -19,20 +22,27 @@ function UserProfile() {
     
         return <Aside asideObj={asideObj} />;
       };
-     
+
+      //const {addprofileResponse,setAddprofileResponse}=useContext(addprofileResponseContext)
+      const {UpdateProfileResponse,setUpdateProfileResponse}=useContext(updateprofileResponseContext)
+
+     const [athletesprofile,setAthletesprofile] = useState([])
+
       const getProfile = async () => {
         if (localStorage.getItem('token')) {
           const token = localStorage.getItem('token');
           const reqHeader = { Authorization: `Token ${token}` };
           const result = await profileApi(reqHeader);
           console.log(result);
-         // setAthletesEvents(result.data);
+          setAthletesprofile(result.data);
+          console.log(athletesprofile);
+          
         }
       };
 
       useEffect(() => {
         getProfile();
-      }, []);
+      }, [UpdateProfileResponse]);
 
 
   return (
@@ -44,31 +54,29 @@ function UserProfile() {
 <Col>
 <div className='text-center'>
 <img style={{borderRadius:"50%",width:"100px,",height:"100px"}} src="https://i.postimg.cc/9Qb0nHmV/social-media-news-2022-08-17-T091907-918.webp" alt="round" />
-<h3 className='mt-3'>Anitha Thomas <i style={{color:"green",fontSize:"15px"}} class="fa-solid fa-1x fa-pen-to-square"></i> </h3>
+<h3 className='mt-3'>Anitha Thomas <Editprofile profile={athletesprofile} /> </h3>
 </div>
 
 </Col>
 </Row> 
 <Row className='m-3 p-3'>
     <Col>
-    <FloatingLabel
-        controlId="floatingInput"
-        label="Email address"
-        className="mb-3"
-      >
-        <Form.Control type="email" placeholder="name@example.com" />
+   
+      <FloatingLabel controlId="floatingPassword" label={athletesprofile.user}>
+        <Form.Control type="text" placeholder="name" />
       </FloatingLabel>
-      <FloatingLabel controlId="floatingPassword" label="Password">
-        <Form.Control type="password" placeholder="Password" />
+      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.age}>
+        <Form.Control type="text" placeholder="age" />
       </FloatingLabel>
     </Col>
     <Col>
     
-    <FloatingLabel controlId="floatingPassword" label="Password">
-        <Form.Control type="password" placeholder="Password" />
+    <FloatingLabel controlId="floatingPassword" label={athletesprofile.adm_no}>
+        <Form.Control type="text" placeholder="admission no" />
       </FloatingLabel>
-      <FloatingLabel className='mt-3' controlId="floatingPassword" label="Password">
-        <Form.Control type="password" placeholder="Password" />
+     
+      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.ph_no}>
+        <Form.Control type="text" placeholder="phone no" />
       </FloatingLabel>
     </Col>
 </Row>

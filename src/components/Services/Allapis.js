@@ -78,3 +78,6 @@ export const profileApi=async(header)=>{
 export const mySponsorApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/athleteapp/sponsor/`,header,"")
 }
+export const updateAUserprofileAPI=async(data,header)=>{
+    return await commonAPI('PUT',`${BaseUrl}/athleteapp/profile/`,data,header)
+}
