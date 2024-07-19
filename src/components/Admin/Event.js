@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import { addEventApi, getAllEventsApi } from "../Services/Allapis";
+import { EventdeleteApi, addEventApi, getAllEventsApi } from "../Services/Allapis";
 function Event() {
   const [preview, setPreview] = useState("")
   const [addEvent, setAddEvent] = useState({
@@ -96,6 +96,17 @@ setlistEvents(messages);
   console.log(preview);
   if (listEvents === null) return <></>;
 
+  const handledelete = async (eid) => {
+    const token = localStorage.getItem('token');
+    const reqHeader = { Authorization: `Token ${token}` };
+    const resultdelete = await EventdeleteApi(eid,reqHeader);
+    getListEvents();
+  }
+
+
+
+
+
   return (
     <div className="event1">
       <Container className="m-2 p-4 ">
@@ -130,7 +141,9 @@ setlistEvents(messages);
                     {i.venue}
 
                     <br /><p className="mt-2">{i.description} </p>
-                    <i style={{ color: "red" }} class="fa-solid fa-trash"></i>
+
+                    <button onClick={()=>handledelete(i.id)} className="btn "  >    <i style={{ color: "red", fontSize:"xxlarge" }} class="fa-solid fa-trash"></i></button>
+                
                   </div>
 
                 </Col>
@@ -147,6 +160,8 @@ setlistEvents(messages);
 
         </div>
       </Container>{" "}
+
+
       <div className="text-center">
         <Modal show={show} onHide={handleClose} className="mt-5">
           <Modal.Header closeButton>

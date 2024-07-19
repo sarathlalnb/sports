@@ -6,7 +6,7 @@ import Request from "./components/College/Request/Request";
 import Landingpage from "./components/Common Components/LandingPage/Landingpage";
 import { SponsorHome } from "./components/Sponsors/SponsorHome/SponsorHome";
 import { AthletesView } from "./components/Sponsors/AthletesView/AthletesView";
-import { CollegeView } from "./components/Sponsors/CollegeView/CollegeView";
+
 import AdminHome from "./components/Admin/AdminHome";
 import Event from "./components/Admin/Event";
 // import RequestAdmin from "./components/Admin/RequestAdmin";
@@ -51,7 +51,7 @@ function App() {
           {/* Sponsor */}
           <Route path="/sponsor/home" element={<SponsorHome />}></Route>
           <Route path="/sponsor/available-athletes" element={<AthletesView/>}></Route>
-          <Route path="/sponsor/available-college" element={<CollegeView/>}></Route>
+         
           <Route path="/sponsor/sponsered-student" element={<StudSpon/>}></Route>
 
           {/* Athletes */}

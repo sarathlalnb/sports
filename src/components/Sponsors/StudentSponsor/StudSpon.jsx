@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import './StudSpon.css'
+import { getSponseredStudentListApi } from '../../Services/Allapis';
+
 function StudSpon() {
+  const [Studentlist, setStudentlist] = useState([]);
+  
+  const getsponseredStudentlist = async () => {
+    if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      const reqHeader = {
+        Authorization: `Token ${token}`,
+      };
+      const result = await getSponseredStudentListApi(reqHeader); 
+     console.log(result);
+      setStudentlist(result.data);
+     
+    }
+  };
+
+  useEffect(() => {
+    getsponseredStudentlist();
+  }, []);
+
+
   return (
     
     <div className='text-center' id='mev'>
@@ -13,22 +35,24 @@ function StudSpon() {
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Student Name</th>
-                <th>Email</th>
-                <th>Username</th>
+                <th>Student</th>
+                <th>Amount</th>
+                <th>Notes</th>
+             
                
               </tr>
             </thead>
             <tbody>
-              {/* {Studentlist.map((student, index) => (
+              {Studentlist.map((student, index) => (
                 <tr key={index}>
-                  <td>{student.id}</td>
-                  <td>{student.first_name}</td>
-                  <td>{student.email}</td>
-                  <td>{student.username}</td>
+                  <td>{index+1}</td>
+                  <td>{student.student}</td>
+                  <td>{student.payment}</td>
+                  <td>{student.note}</td>
+                  
                  
                 </tr>
-              ))} */}
+              ))}
             </tbody>
           </Table>
         </div>

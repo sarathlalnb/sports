@@ -113,6 +113,7 @@ function AdminHome() {
           <Row className="justify-content-center mt-4">
             <Col md={6}>
               <div className='text-center ' style={{ backgroundColor: "#000000", borderRadius: "10px" }}>
+                
                 <div className='m-2 p-2'>
                   <h4 style={{ color: "white" }}>College List</h4>
                   <TableContainer component={Paper} className='mt-4'>

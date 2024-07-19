@@ -24,8 +24,8 @@ export const SponsorHome = () => {
         icon: "sticky-note",
       },
       {
-        text: "Available College",
-        link: "/sponsor/available-athletes",
+        text: "Sponsered Students",
+        link: "/sponsor/sponsered-student",
         icon: "sticky-note",
       },
     ];

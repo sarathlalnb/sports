@@ -26,7 +26,7 @@ function Winnerslist() {
 <div className='col-3'></div>
 
 <div className='text-center '  id='innerdiv' >
-    <h4>Winners List</h4>
+    <h4>My Wins</h4>
 
 
 
@@ -35,37 +35,26 @@ function Winnerslist() {
 
 <thead>
  <tr >
-   <th>Id</th>
-   <th>Student Name</th>
-   <th>College</th>
-   <th>Username</th>
-   <th>Scolarship</th>
+    <th>Sl no.</th>
+   <th>Event Name</th>
+   <th>Event Id</th>
+   <th>Position</th>
+   
    
  </tr>
 </thead>
 <tbody>
- <tr>
-   <td>1</td>
-   <td>Mark</td>
-   <td>Otto</td>
-   <td>@mdo</td>
-   <td>@mdo</td>
- </tr>
- <tr>
-   <td>2</td>
-   <td>Jacob</td>
-   <td>Thornton</td>
-   <td>@fat</td>
-   <td>@mdo</td>
- </tr>
- <tr>
-   <td>3</td>
-   <td >Larry the Bird</td> 
-   <td>@twitter</td>
-   <td>@mdo</td>
-   <td>hjsbgjah</td>
-   
- </tr>
+{athletesEvents.map((student, index) => (
+                <tr key={index}>
+                  <td>{index+1}</td>
+                  <td>{student.event_name}</td>
+                  <td>{student.event}</td>
+                  <td>{student.position}</td>
+                
+                  
+                 
+                </tr>
+              ))}
 </tbody>
 </Table>
 
