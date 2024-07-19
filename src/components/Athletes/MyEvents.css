@@ -1,0 +1,30 @@
+
+
+
+#mp{
+    background-image: url();
+   
+    background-size: contain;
+    height: auto;
+    width: 100%;
+    position: absolute;
+
+
+  
+}
+
+#outerdiv{
+    background-color: rgba(240, 248, 255, 0.371);
+    border-radius: 20px;
+   
+   
+}
+#innerdiv{
+    background-color: rgba(240, 248, 255, 0.552);
+    border-radius: 20px;
+    width: auto;
+    margin: 20px;
+ 
+ 
+    
+    }

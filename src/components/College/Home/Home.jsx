@@ -38,6 +38,7 @@ const Home = () => {
       const token = localStorage.getItem('token');
       const reqHeader = { Authorization: `Token ${token}` };
       const result = await collegeEventApi(reqHeader);
+      console.log(result.data);
       setCollegeEvents(result.data);
     }
   };

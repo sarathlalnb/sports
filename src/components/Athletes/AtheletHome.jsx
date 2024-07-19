@@ -23,7 +23,8 @@ function AtheletHome() {
       {
         text: "Sponsors", link: "",icon: "sticky-note",
       },
-      { text: "Winners List", link: "/Winnerslist", icon: "sticky-note" }
+      { text: "My Wins", link: "/Winnerslist", icon: "sticky-note" },
+      { text: "Events Registered", link: "/myEvents", icon: "sticky-note" }
 
     ];
 
@@ -60,11 +61,11 @@ function AtheletHome() {
   
   
   const  handleRegister = async (uId) => {
-    const payload = {id:uId};
+    const payload = {event:uId};
     try{
       const token = localStorage.getItem('token');
       const reqHeader = { Authorization: `Token ${token}` };
-      const result = await EventregApi(payload,reqHeader);
+      const result = await EventregApi(uId,reqHeader);
       console.log(result);
     }catch(error){
       console.log(error);

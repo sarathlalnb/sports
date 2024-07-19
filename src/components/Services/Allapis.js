@@ -24,8 +24,8 @@ export const addEventApi=async(data,header)=>{
 export const getAllwinnersApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/winner/`,"",header)
 }
-export const addWinnerApi=async(data)=>{
-    return await CmommonAPI('POST',`${BaseUrl}/adminapp/winner/`,"",data)
+export const addWinnerApi=async(data,reqHeader)=>{
+    return await CmommonAPI('POST',`${BaseUrl}/adminapp/winner/`,data,reqHeader)
 }
 
 //college
@@ -84,5 +84,9 @@ export const updateAUserprofileAPI=async(data,header)=>{
 
 
 export const EventregApi=async(payload,header)=>{
-    return await commonAPI('POST',`${BaseUrl}/athleteapp/partevent/`,payload,header)
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/partevent/${payload}/`,header)
+}
+
+export const UserEventlistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/parteventget/`,header,"")
 }
