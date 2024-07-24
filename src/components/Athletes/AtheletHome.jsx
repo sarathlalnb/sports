@@ -21,7 +21,7 @@ function AtheletHome() {
     const asideObj = [
       { text: "User Profile", link: "/user-profile", icon: "th-large" },
       {
-        text: "Sponsors", link: "",icon: "sticky-note",
+        text: "Sponsors", link: "/mysponsorslist",icon: "sticky-note",
       },
       { text: "My Wins", link: "/Winnerslist", icon: "sticky-note" },
       { text: "Events Registered", link: "/myEvents", icon: "sticky-note" }

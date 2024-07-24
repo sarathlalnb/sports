@@ -28,6 +28,11 @@ function UserProfile() {
 
      const [athletesprofile,setAthletesprofile] = useState([])
 
+
+     const [show, setShow] = useState(false);
+
+     
+
       const getProfile = async () => {
         if (localStorage.getItem('token')) {
           const token = localStorage.getItem('token');
@@ -45,6 +50,19 @@ function UserProfile() {
       }, [UpdateProfileResponse]);
 
 
+
+
+
+     
+    
+
+
+
+
+
+
+
+
   return (
     <div className="main-grid">
        <div>{fetchAsideItems()}</div>
@@ -59,26 +77,57 @@ function UserProfile() {
 
 </Col>
 </Row> 
-<Row className='m-3 p-3'>
-    <Col>
-   
-      <FloatingLabel controlId="floatingPassword" label={athletesprofile.user}>
+<Row className='m-3 p-3' style={{colour:"black"}}>
+   <Col>
+   <label htmlFor="">Name</label>
+   <FloatingLabel controlId="floatingPassword" label={athletesprofile.user}>
         <Form.Control type="text" placeholder="name" />
       </FloatingLabel>
-      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.age}>
+      <label htmlFor="">Age</label>
+      <FloatingLabel  className='mt-3 ' controlId="floatingPassword" label={athletesprofile.age}>
         <Form.Control type="text" placeholder="age" />
       </FloatingLabel>
-    </Col>
-    <Col>
-    
-    <FloatingLabel controlId="floatingPassword" label={athletesprofile.adm_no}>
+      <label htmlFor="">DOB</label>
+      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.dob}>
+        <Form.Control type="text" placeholder="DOB" />
+      </FloatingLabel>
+ 
+      <label htmlFor="">AdmissionNo</label>
+    <FloatingLabel className='mt-4' controlId="floatingPassword" label={athletesprofile.adm_no}>
         <Form.Control type="text" placeholder="admission no" />
       </FloatingLabel>
-     
-      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.ph_no}>
+   </Col>
+   
+      
+
+      <Col>
+      <label htmlFor="">Phn-No</label>
+      <FloatingLabel  controlId="floatingPassword" label={athletesprofile.ph_no}>
         <Form.Control type="text" placeholder="phone no" />
       </FloatingLabel>
-    </Col>
+      <label htmlFor="">Bank</label>
+      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.bankname}>
+        <Form.Control type="text" placeholder="Bank" />
+      </FloatingLabel>
+      <label htmlFor="">Acc-No</label>
+      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile.accno}>
+        <Form.Control type="text" placeholder="acc no" />
+      </FloatingLabel>
+      <label htmlFor="">IFSC</label>
+      <FloatingLabel className='mt-3' controlId="floatingPassword" label={athletesprofile. ifsc_code}>
+        <Form.Control type="text" placeholder=" ifsc_code" />
+      </FloatingLabel>
+
+      </Col>
+    
+    
+    
+      
+     
+      
+
+
+   
 </Row>
 </div>
        

@@ -9,8 +9,8 @@ import { BaseUrl } from "./BaseUrl";
 export const collegeListApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/college/`,"",header)
 }
-export const userListApi=async(header)=>{
-    return await commonAPI('GET',`${BaseUrl}/adminapp/student/`,"",header)
+export const userListApi=async(id)=>{
+    return await commonAPI('GET',`${BaseUrl}/adminapp/college/${id}/`,"","")
 }
 export const sponsorListApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/sponsor/`,"",header)
@@ -30,6 +30,8 @@ export const addWinnerApi=async(data,reqHeader)=>{
 export const EventdeleteApi=async(uid,reqHeader)=>{
     return await CmommonAPI('DELETE',`${BaseUrl}/adminapp/event/${uid}/`,"",reqHeader)
 }
+
+
 
 //college
 

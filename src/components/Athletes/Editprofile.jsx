@@ -111,6 +111,20 @@ function Editprofile({ profile }) {
                 placeholder="Phone Number"
                 className="form-control mb-3"
               />
+                <input
+                onChange={(e) => setProfileData({ ...profileData, accno: e.target.value })}
+                type="text"
+                value={profileData.accno}
+                placeholder="Account Number"
+                className="form-control mb-3"
+              />
+                <input
+                onChange={(e) => setProfileData({ ...profileData, bankname: e.target.value })}
+                type="text"
+                value={profileData.phno}
+                placeholder="Bank Name"
+                className="form-control mb-3"
+              />
             </div>
           </div>
         </Modal.Body>

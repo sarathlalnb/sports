@@ -37,9 +37,9 @@ function Mysponsor() {
  <tr >
    <th>Id</th>
   
-   <th>Email</th>
-   <th>Username</th>
-   <th>Date-Joined</th>
+   <th>Sponsor Name</th>
+   <th>Note</th>
+   <th>Amount</th>
 
  
    
@@ -49,10 +49,10 @@ function Mysponsor() {
 {request.map((Sponsor, index) => (
                 <tr key={index}>
                   <td>{Sponsor.id}</td>
-                  
-                  <td>{Sponsor.email}</td>
-                  <td>{Sponsor.username}</td>
-                  <td>{Sponsor.date_joined}</td>
+                  <td>{Sponsor.sponsor}</td>
+                  <td>{Sponsor.note}</td>
+                  <td>{Sponsor.payment}</td>
+                 
                  
                 </tr>
               ))}

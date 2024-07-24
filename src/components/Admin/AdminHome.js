@@ -31,31 +31,31 @@ function AdminHome() {
   const [userPage, setUserPage] = useState(1);
   const itemsPerPage = 5;
 
-  const getCollegeList = async () => {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      const reqHeader = {
-        Authorization: `Token ${token}`,
-      };
-      const result = await collegeListApi(reqHeader);
-      setCollegeList(result.data);
-    }
-  };
+  // const getCollegeList = async () => {
+  //   if (localStorage.getItem('token')) {
+  //     const token = localStorage.getItem('token');
+  //     const reqHeader = {
+  //       Authorization: `Token ${token}`,
+  //     };
+  //     const result = await collegeListApi(reqHeader);
+  //     setCollegeList(result.data);
+  //   }
+  // };
 
-  const getUserList = async () => {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      const reqHeader = {
-        Authorization: `Token ${token}`,
-      };
-      const result = await userListApi(reqHeader); 
-      setUserList(result.data);
-    }
-  };
+  // const getUserList = async () => {
+  //   if (localStorage.getItem('token')) {
+  //     const token = localStorage.getItem('token');
+  //     const reqHeader = {
+  //       Authorization: `Token ${token}`,
+  //     };
+  //     const result = await userListApi(reqHeader); 
+  //     setUserList(result.data);
+  //   }
+  // };
 
   useEffect(() => {
-    getUserList();
-    getCollegeList();
+    // getUserList();
+    // getCollegeList();
   }, []);
 
   const handleCollegePageChange = (event, value) => {
@@ -80,6 +80,8 @@ function AdminHome() {
                   <span>Admin</span>
                 </b>
               </h4>
+
+
             </CDBSidebarHeader>
             <CDBSidebarContent>
               <CDBSidebarMenu>
@@ -89,6 +91,12 @@ function AdminHome() {
                 <Link style={{ textDecoration: "none" }} to="/admin-winner">
                   <CDBSidebarMenuItem icon='book'>Winners</CDBSidebarMenuItem>
                 </Link>
+                <Link style={{ textDecoration: "none" }} to="/admin-students">
+                  <CDBSidebarMenuItem icon='book'>Students</CDBSidebarMenuItem>
+                </Link>
+
+
+                
                 
               </CDBSidebarMenu>
             </CDBSidebarContent>
@@ -147,6 +155,7 @@ function AdminHome() {
                 </div>
               </div>
             </Col>
+            
             <Col md={6}>
               <div className='text-center t' style={{ backgroundColor: "#000000", borderRadius: "15px" }}>
                 <div className='m-2 p-2'>
