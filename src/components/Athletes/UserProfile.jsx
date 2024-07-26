@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { profileApi } from '../Services/Allapis';
 import Editprofile from './Editprofile';
 import { addprofileResponseContext, updateprofileResponseContext } from '../../ContextAPI/ContextShare';
+import { Link } from "react-router-dom";
 
 function UserProfile() {
     const fetchAsideItems = () => {
@@ -51,18 +52,6 @@ function UserProfile() {
 
 
 
-
-
-     
-    
-
-
-
-
-
-
-
-
   return (
     <div className="main-grid">
        <div>{fetchAsideItems()}</div>
@@ -71,6 +60,10 @@ function UserProfile() {
 <Row>
 <Col>
 <div className='text-center'>
+  <div>
+<Link to="/athletes-home" style={{ textDecoration: "none", color: "black", marginLeft:"-1200px" }} >
+<i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
+</div>
 <img style={{borderRadius:"50%",width:"100px,",height:"100px"}} src="https://i.postimg.cc/9Qb0nHmV/social-media-news-2022-08-17-T091907-918.webp" alt="round" />
 <h3 className='mt-3'>Anitha Thomas <Editprofile profile={athletesprofile} /> </h3>
 </div>

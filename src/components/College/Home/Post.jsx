@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import { getAthletesApi } from "../../Services/Allapis";
 import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const [athletes, setAthletes] = useState(null);
@@ -27,6 +28,8 @@ const Post = () => {
   return (
     <Container>
       <div className="text-center mt-5 mb-5">
+      <Link to="/athletes-home" style={{ textDecoration: "none", color: "black",marginLeft:"-1200px" }} >
+      <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
         <h3>
           <b style={{color:"brown"}} >Available Athletes</b>
         </h3>

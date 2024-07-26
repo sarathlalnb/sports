@@ -3,7 +3,12 @@ import Table from 'react-bootstrap/Table';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import './RequestAdmin.css'
+<<<<<<< HEAD
 import { collegesponsorlistApi } from '../../Services/Allapis';
+=======
+import { Link } from 'react-router-dom';
+
+>>>>>>> 71219fe7523f4697b263aad3bb264ac52d0e5dd8
 
 function RequestCollege() {
     const [request, setRequest] = useState(null);
@@ -63,7 +68,10 @@ function RequestCollege() {
       if (request === null) return <></>;
     
       return (
+        
         <div className='r1'>
+          <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
+          <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
           <div className='m-5'>
             <h1 style={{ color: 'Black' }} className='text-center mt-3'>
               Requests

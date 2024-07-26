@@ -27,18 +27,16 @@ function CollegeStudents() {
           <Row className="m-5">
             {Studentlist.map((student, index) => (
               <Col key={index} className="m-2">
-                <Card style={{ width: "18rem" }}>
+                <Card style={{ width: "18rem" ,boxShadow:"2px 3px 5px black"}}>
                   <Card.Body>
-                    <Card.Title>{student.first_name}</Card.Title>
+                    <Card.Title>{student.name}</Card.Title>
                     <Card.Text>ID: {student.id}</Card.Text>
-                    <Card.Text>Email: {student.email}</Card.Text>
-                    <Card.Text>Username: {student.username}</Card.Text>
-                    <button
-                    
-                      className="btn btn-outline-primary"
-                    >
-                      Sponsor
-                    </button>
+                    <Card.Text>Ph no:{student.ph_no}</Card.Text>
+                    <Card.Text>Age:{student.age}</Card.Text>
+                    <Card.Text>Admission no:{student.adm_no}</Card.Text>
+                    <Card.Text>dob:{student.dob}</Card.Text>
+                   
+                   
                   </Card.Body>
                 </Card>
               </Col>
