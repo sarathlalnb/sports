@@ -31,7 +31,9 @@ export const EventdeleteApi=async(uid,reqHeader)=>{
     return await CmommonAPI('DELETE',`${BaseUrl}/adminapp/event/${uid}/`,"",reqHeader)
 }
 
-
+export const ViewwinnerslistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/adminapp/winner/`,"",header)
+}
 
 //college
 
@@ -50,9 +52,9 @@ export const studentregApi=async(header)=>{
 export const studentlistApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/collegeapp/student/`,header,"")
 }
-// export const sponsorlistApi=async(header)=>{
-//     return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,header,"")
-// }
+export const collegesponsorlistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,header,"")
+}
 
  
 //sponsor

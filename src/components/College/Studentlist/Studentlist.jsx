@@ -36,6 +36,7 @@ function Studentlist() {
                 <th>Student Name</th>
                 <th>Email</th>
                 <th>Username</th>
+                <th>Events Registered</th>
                
               </tr>
             </thead>
@@ -46,6 +47,7 @@ function Studentlist() {
                   <td>{student.first_name}</td>
                   <td>{student.email}</td>
                   <td>{student.username}</td>
+                  {/* <td>{student.events}</td> */}
                  
                 </tr>
               ))}

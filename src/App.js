@@ -25,6 +25,7 @@ import StudSpon from "./components/Sponsors/StudentSponsor/StudSpon";
 import MyEvents from "./components/Athletes/MyEvents";
 import AdminStudents from "./components/Admin/AdminStudents";
 import CollegeStudents from "./components/Admin/CollegeStudents";
+import ViewWinner from "./components/Admin/ViewWinner";
 
 
 
@@ -41,7 +42,8 @@ function App() {
 <Route path="/admin-home"  element={<AdminHome></AdminHome>} ></Route>
 <Route path="/admin-event"  element={<Event></Event>} ></Route>
 <Route path="/admin-winner"  element={<Winner></Winner>} ></Route>
-{/* <Route path="/admin-students"  element={<AdminStudents></AdminStudents>} ></Route> */}
+<Route path="/admin-winnerview"  element={<ViewWinner></ViewWinner>} ></Route>
+<Route path="/admin-students"  element={<AdminStudents></AdminStudents>} ></Route>
 <Route path="/admin-collegestudents/:id"  element={<CollegeStudents/>} ></Route>
           {/* College */}
           <Route path="/college-home" element={<Home />} />

@@ -32,12 +32,12 @@ function Event() {
       const token = localStorage.getItem('token');
       const reqHeader = { Authorization: `Token ${token}` };
       const result = await getAllEventsApi(reqHeader);
- 
+
       const messages = result.data.sort(
         (a, b) => new Date(b.date) - new Date(a.date)
-        );
-console.log(messages);
-setlistEvents(messages);
+      );
+      console.log(messages);
+      setlistEvents(messages);
     }
   };
   useEffect(() => {
@@ -95,10 +95,10 @@ setlistEvents(messages);
   const handledelete = async (eid) => {
     const token = localStorage.getItem('token');
     const reqHeader = { Authorization: `Token ${token}` };
-    const resultdelete = await EventdeleteApi(eid,reqHeader);
+    const resultdelete = await EventdeleteApi(eid, reqHeader);
     getListEvents();
   }
-  
+
   return (
     <div className="event1">
       <Container className="m-2 p-4 ">
@@ -122,21 +122,18 @@ setlistEvents(messages);
             <div className="event2 mt-5 ms-5">
               <Row className="m-2 p-3">
                 <Col>
-
-
-
-                  <div className="text-white mt-5">
+                    <div className="text-white mt-5">
                     <h1>  {i.title}</h1>
+                    Event Id: {i.id}  <br />
                     <i class="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
                     {i.date.slice(0, 10)}<br />
                     <i class="fa-solid fa-location-dot ms-3 mt-2 mx-3 "></i>
                     {i.venue}
-
                     <br /><p className="mt-2">{i.description} </p>
 
-                    <button onClick={()=>handledelete(i.id)} className="btn "  >    <i style={{ color: "red", fontSize:"xxlarge" }} class="fa-solid fa-trash"></i></button>
-                
-                  </div>
+                    <button onClick={() => handledelete(i.id)} className="btn "  >    <i style={{ color: "red", fontSize: "xxlarge" }} class="fa-solid fa-trash"></i></button>
+
+                    </div>
 
                 </Col>
                 <Col>
