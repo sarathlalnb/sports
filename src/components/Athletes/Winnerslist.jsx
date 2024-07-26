@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./Winnerslist.css"
 import Table from 'react-bootstrap/Table';
 import { winnerslistApi } from '../Services/Allapis';
+import { Link } from "react-router-dom";
 
 function Winnerslist() {
 
@@ -22,13 +23,18 @@ function Winnerslist() {
       };
   return (
     <div className='text-center' id='maindiv2'>
-
+<Link to="/athletes-home" style={{ textDecoration: "none", color: "white",marginLeft:"-1200px" }} >
+<i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
 <div className='col-3'></div>
 
 <div className='text-center '  id='innerdiv' >
+  <div>
+  
+  </div>
+  <div>
     <h4>My Wins</h4>
-
-
+ 
+</div>
 
     <div id='outerdiv' className='m-2'>
     <Table className='text-center ' >

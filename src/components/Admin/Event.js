@@ -101,11 +101,12 @@ setlistEvents(messages);
   
   return (
     <div className="event1">
+      <Link to="/admin-home" style={{ textDecoration: "none", color: "white" }} >
+      <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
       <Container className="m-2 p-4 ">
         <div>
           <h1 className="text-center">Events</h1>
-          <Link to="/admin-home" style={{ textDecoration: "none", color: "white" }} >
-            <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
+          
           <div className="text-center ">
             <Button
               variant="contained"

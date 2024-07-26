@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getStudentListApi, studsponAPI } from "../../Services/Allapis";
 import Modal from 'react-bootstrap/Modal';
+import { Link } from "react-router-dom";
+
 
 export const AthletesView = () => {
   const [show, setShow] = useState(false);
@@ -75,9 +77,14 @@ export const AthletesView = () => {
   };
 
   return (
+    
     <div className="main-grid">
+      
       <div>{fetchAsideItems()}</div>
+      
       <div className="p-5">
+      <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
+      <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
         <div className="text-start event-head mb-4 mt-4">
           <h3>
             <b>Available Athletes</b>

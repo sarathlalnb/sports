@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import './SponsorView.css';
 import { sponsorListApi } from '../../Services/Allapis';
+import { Link } from 'react-router-dom';
 
 
 function Sponsorview() {
@@ -28,11 +29,13 @@ function Sponsorview() {
 
   return (
     <div className='text-center' id='main'>
-
+<Link to="/athletes-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
+<i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
 <div className='col-3'></div>
 
 <div className='text-center '  id='innerdiv' >
     <h4>Sponsor List</h4>
+    
 
 
 

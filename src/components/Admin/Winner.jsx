@@ -3,6 +3,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import './Winner.css';
 import { addWinnerApi } from '../Services/Allapis';
+import { Link } from "react-router-dom";
 
 function Winner() {
   const [addWinner, setAddWinner] = useState({
@@ -47,8 +48,13 @@ function Winner() {
 
   return (
     <div className='text-center' id='maindiv'>
+       <Link to="/admin-home" style={{ textDecoration: "none", color: "black",marginLeft:"-1400px", marginTop:"200px"}} >
+       <i class="fa-solid fa-backward fa-beat "></i>Back</Link>
       <div className='card shadow m-5 p-5'>
+        <div>
         <h2 className='text-center m-4 text-dark'>Add Winner</h2>
+       
+        </div>
         <FloatingLabel controlId="floatingInputStudent" label="Student ID" className="mb-3">
           <Form.Control
             type="text"

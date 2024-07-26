@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import { sponsorListApi } from '../../Services/Allapis';
 import axios from 'axios';
 import './RequestAdmin.css'
+import { Link } from 'react-router-dom';
+
 
 function RequestCollege() {
     const [request, setRequest] = useState(null);
@@ -46,7 +48,10 @@ function RequestCollege() {
       if (request === null) return <></>;
     
       return (
+        
         <div className='r1'>
+          <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
+          <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
           <div className='m-5'>
             <h1 style={{ color: 'Black' }} className='text-center mt-3'>
               Requests

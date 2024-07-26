@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import './StudSpon.css'
 import { getSponseredStudentListApi } from '../../Services/Allapis';
+import { Link } from 'react-router-dom';
+
 
 function StudSpon() {
   const [Studentlist, setStudentlist] = useState([]);
@@ -28,6 +30,8 @@ function StudSpon() {
     
     <div className='text-center' id='mev'>
       <div className='col-3'></div>
+      <Link to="/athletes-home" style={{ textDecoration: "none", color: "black",marginLeft:"-1200px"}} >
+          <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
       <div className='text-center' id='inner'>
         <h4>Sponsered Student List</h4>
         <div id='outerrr' className='m-2'>
