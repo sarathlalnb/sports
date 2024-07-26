@@ -113,17 +113,7 @@ function AdminHome() {
                 <Link style={{ textDecoration: "none" }} to="/admin-winnerview">
                   <CDBSidebarMenuItem icon='book'>Winners</CDBSidebarMenuItem>
                 </Link>
-<<<<<<< HEAD
 
-
-                
-                
-=======
-                {/* <Link style={{ textDecoration: "none" }} to="/admin-students">
-                  <CDBSidebarMenuItem icon='book'>Students</CDBSidebarMenuItem>
-                </Link> */}
-           
->>>>>>> 71219fe7523f4697b263aad3bb264ac52d0e5dd8
               </CDBSidebarMenu>
             </CDBSidebarContent>
             <CDBSidebarFooter style={{ textAlign: 'center' }}>

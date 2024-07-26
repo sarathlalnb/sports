@@ -15,7 +15,7 @@ function Studentlist() {
         Authorization: `Token ${token}`,
       };
       const result = await studentlistApi(reqHeader); 
-     
+     console.log(result);
       setStudentlist(result.data);
      
     }
@@ -27,7 +27,7 @@ function Studentlist() {
 
   return (
     <div className='text-center' id='maindiv'>
-      <Link to="/athletes-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
+      <Link to="/college-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
       <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
       <div className='col-3'></div>
       <div className='text-center' id='innerdiv'>

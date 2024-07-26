@@ -26,6 +26,7 @@ import MyEvents from "./components/Athletes/MyEvents";
 import AdminStudents from "./components/Admin/AdminStudents";
 import CollegeStudents from "./components/Admin/CollegeStudents";
 import ViewWinner from "./components/Admin/ViewWinner";
+import StudentWinners from "./components/Sponsors/StudentWinners";
 
 
 
@@ -58,7 +59,7 @@ function App() {
           <Route path="/sponsor/available-athletes" element={<AthletesView/>}></Route>
          
           <Route path="/sponsor/sponsered-student" element={<StudSpon/>}></Route>
-
+          <Route path="/sponsor/winner" element={<StudentWinners/>}></Route>
           {/* Athletes */}
           <Route path="/athletes-home" element={<AtheletHome/>}></Route>
           <Route path="/user-profile" element={<UserProfile/>}></Route>

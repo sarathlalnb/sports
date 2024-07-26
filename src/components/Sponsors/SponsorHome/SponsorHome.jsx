@@ -28,6 +28,11 @@ export const SponsorHome = () => {
         link: "/sponsor/sponsered-student",
         icon: "sticky-note",
       },
+      {
+        text: "Winners",
+        link: "/sponsor/winner",
+        icon: "sticky-note",
+      },
     ];
 
     return <Aside asideObj={asideObj} />;

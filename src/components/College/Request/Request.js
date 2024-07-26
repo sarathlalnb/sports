@@ -63,7 +63,7 @@ const Request = () => {
 
       <Container className="mt-5">
         
-        <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
+        <Link to="/college-home" style={{ textDecoration: "none", color: "black"}} >
         <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
         
         <div className="text-start event-head mb-4 sticky-top">
@@ -79,18 +79,18 @@ const Request = () => {
               <th>Sponsor Name</th>
               <th>Student Name</th>
               <th>Payment</th>
-              <th>Action</th>
+             
             </tr>
           </thead>
           <tbody className="text-center">
             {sponsor?.map((i, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{i.sponsor}</td>
-                <td>{i.student}</td>
+                <td>{i.sponsor_name}</td>
+                <td>{i.student_name}</td>
                 <td>{i.payment}</td>
                 <td>
-                  <Button
+                  {/* <Button
                     style={{
                       backgroundColor: 'green',
                       color: 'white',
@@ -100,7 +100,7 @@ const Request = () => {
                     onClick={()=>handleReqApproval(i.id)}
                   >
                     Approve
-                  </Button>
+                  </Button> */}
                 </td>
               </tr>
             ))}
