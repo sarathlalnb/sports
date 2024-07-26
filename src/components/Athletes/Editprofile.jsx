@@ -124,7 +124,7 @@ function Editprofile({ profile }) {
                 value={profileData.phno}
                 placeholder="Bank Name"
                 className="form-control mb-3"
-              />
+                />
             </div>
           </div>
         </Modal.Body>

@@ -20,7 +20,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { collegeListApi, userListApi } from '../Services/Allapis';
 import Pagination from '@mui/material/Pagination';
 
@@ -30,6 +30,25 @@ function AdminHome() {
   const [collegePage, setCollegePage] = useState(1);
   const [userPage, setUserPage] = useState(1);
   const itemsPerPage = 5;
+
+  const navigate = useNavigate()
+
+    const [colleges, setColleges] = useState([]);
+
+    const Studentspage = async (id) => {
+        navigate(`/admin-collegestudents/${id}`)
+    }
+
+    const getCollegeList = async () => {
+
+        const result = await collegeListApi();
+        console.log(result.data);
+        setColleges(result.data);
+    }
+
+    useEffect(() => {
+        getCollegeList()
+    }, []);
 
   // const getCollegeList = async () => {
   //   if (localStorage.getItem('token')) {
@@ -53,10 +72,10 @@ function AdminHome() {
   //   }
   // };
 
-  useEffect(() => {
-    // getUserList();
-    // getCollegeList();
-  }, []);
+  // useEffect(() => {
+  //   // getUserList();
+  //   // getCollegeList();
+  // }, []);
 
   const handleCollegePageChange = (event, value) => {
     setCollegePage(value);
@@ -91,9 +110,9 @@ function AdminHome() {
                 <Link style={{ textDecoration: "none" }} to="/admin-winner">
                   <CDBSidebarMenuItem icon='book'>Winners</CDBSidebarMenuItem>
                 </Link>
-                <Link style={{ textDecoration: "none" }} to="/admin-students">
+                {/* <Link style={{ textDecoration: "none" }} to="/admin-students">
                   <CDBSidebarMenuItem icon='book'>Students</CDBSidebarMenuItem>
-                </Link>
+                </Link> */}
 
 
                 
@@ -122,9 +141,35 @@ function AdminHome() {
             <Col md={6}>
               <div className='text-center ' style={{ backgroundColor: "#000000", borderRadius: "10px" }}>
                 
-                <div className='m-2 p-2'>
-                  <h4 style={{ color: "white" }}>College List</h4>
-                  <TableContainer component={Paper} className='mt-4'>
+                <div className='pt-3' style={{marginLeft:"-350px",backgroundColor:"white",width:"1000px"}}>
+                  <h4 style={{fontSize:"38px", color:"black"}}>College List</h4>
+                  <Table style={{backgroundColor:"lightpink",width:"1000px" }}  className='text-center mt-3 '>
+
+                <thead>
+                    <tr  >
+                        <th>Id</th>
+
+                        <th>college Name</th>
+                        <th>status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {colleges.map((college, index) => (
+                        <tr key={index}>
+                            <td>{college.id}</td>
+                            <td>{college.first_name}</td>
+                            <td><button onClick={()=>{
+                                Studentspage(college.id)
+                            }} className='btn'>View Students</button></td>
+
+
+                        </tr>
+                    ))}
+  
+                </tbody>
+            </Table>
+                  {/* <TableContainer component={Paper} className='mt-4'>
                     <Table sx={{ minWidth: 150 }} aria-label="simple table">
                       <TableHead>
                         <TableRow>
@@ -143,8 +188,8 @@ function AdminHome() {
                         ))}
                       </TableBody>
                     </Table>
-                  </TableContainer>
-                  <Stack spacing={2} className='mt-3'>
+                  </TableContainer> */}
+                  {/* <Stack spacing={2} className='mt-3'>
                     <Pagination 
                       count={Math.ceil(collegeList.length / itemsPerPage)} 
                       page={collegePage}
@@ -159,8 +204,8 @@ function AdminHome() {
             <Col md={6}>
               <div className='text-center t' style={{ backgroundColor: "#000000", borderRadius: "15px" }}>
                 <div className='m-2 p-2'>
-                  <h4 style={{ color: "white" }}>User List</h4>
-                  <TableContainer component={Paper} className='mt-4'>
+                  <h4 style={{ color: "white" }}>User List</h4> */}
+                  {/* <TableContainer component={Paper} className='mt-4'>
                     <Table sx={{ minWidth: 150 }} aria-label="simple table">
                       <TableHead>
                         <TableRow>
@@ -177,15 +222,15 @@ function AdminHome() {
                         ))}
                       </TableBody>
                     </Table>
-                  </TableContainer>
-                  <Stack spacing={2} className='mt-3'>
-                    <Pagination 
+                  </TableContainer> */}
+                  {/* <Stack spacing={2} className='mt-3'> */}
+                    {/* <Pagination 
                       count={Math.ceil(userList.length / itemsPerPage)} 
                       page={userPage} 
                       onChange={handleUserPageChange} 
                       color="primary" 
                     />
-                  </Stack>
+                  </Stack> */}
                 </div>
               </div>
             </Col>

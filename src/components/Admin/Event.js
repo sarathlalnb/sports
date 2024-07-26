@@ -71,11 +71,7 @@ setlistEvents(messages);
         console.log(error);
       }
     }
-
   }
-
-
-
 
   console.log(token);
   useEffect(() => {
@@ -102,11 +98,7 @@ setlistEvents(messages);
     const resultdelete = await EventdeleteApi(eid,reqHeader);
     getListEvents();
   }
-
-
-
-
-
+  
   return (
     <div className="event1">
       <Container className="m-2 p-4 ">

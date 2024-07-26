@@ -41,7 +41,7 @@ function App() {
 <Route path="/admin-home"  element={<AdminHome></AdminHome>} ></Route>
 <Route path="/admin-event"  element={<Event></Event>} ></Route>
 <Route path="/admin-winner"  element={<Winner></Winner>} ></Route>
-<Route path="/admin-students"  element={<AdminStudents></AdminStudents>} ></Route>
+{/* <Route path="/admin-students"  element={<AdminStudents></AdminStudents>} ></Route> */}
 <Route path="/admin-collegestudents/:id"  element={<CollegeStudents/>} ></Route>
           {/* College */}
           <Route path="/college-home" element={<Home />} />
