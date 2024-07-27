@@ -36,7 +36,7 @@ function Winnerslist() {
 
 
       useEffect(() => {
-        getWinnerslist(),
+        getWinnerslist();
         getstateWinnerslist()
        }, []);
 
