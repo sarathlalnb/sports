@@ -1,62 +1,63 @@
 import React from "react";
 import Aside from "../../Common Components/Aside/Aside";
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row, Table } from "react-bootstrap";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getStudentListApi, studsponAPI } from "../../Services/Allapis";
+import { sponsorcollegeListApi } from "../../Services/Allapis";
 import Modal from 'react-bootstrap/Modal';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export const AthletesView = () => {
-  const [show, setShow] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState(null);
-  const [Studentlist, setStudentlist] = useState([]);
-  const [userdata, setUserdata] = useState({
-    payment: "",
-    note: ""
-  });
+  // const [show, setShow] = useState(false);
+  // const [selectedStudent, setSelectedStudent] = useState(null);
+  // const [Studentlist, setStudentlist] = useState([]);
+  // const [userdata, setUserdata] = useState({
+  //   payment: "",
+  //   note: ""
+  // });
 
-  const handleClose = () => setShow(false);
-  const handleShow = (student) => {
-    setSelectedStudent(student);
-    setShow(true);
-  };
+  // const handleClose = () => setShow(false);
+  // const handleShow = (student) => {
+  //   setSelectedStudent(student);
+  //   setShow(true);
+  // };
 
-  const getStudentlist = async () => {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      const reqHeader = {
-        Authorization: `Token ${token}`,
-      };
-      const result = await getStudentListApi(reqHeader);
-      setStudentlist(result.data);
-    }
-  };
+  const navigate = useNavigate()
 
-  const handleSponsor = async () => {
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      const reqHeader = {
-        Authorization: `Token ${token}`,
-      };
-      const payload = {
-        note: userdata.note,
-        payment: userdata.payment,
-      };
-      if (selectedStudent) {
-        const sid = selectedStudent.id;
-        console.log(sid);
-        
-        const result = await studsponAPI(sid, payload, reqHeader);
-        console.log(result);
-      }
-    }
-  };
+  const [colleges, setColleges] = useState([]);
+
+  const Studentspage = async (id) => {
+      navigate(`/sponsor/students/${id}`)
+  }
+
+  const getCollegeList = async () => {
+
+      const result = await sponsorcollegeListApi();
+      console.log(result.data);
+      setColleges(result.data);
+  }
 
   useEffect(() => {
-    getStudentlist();
+      getCollegeList()
   }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+ 
+  
 
   const fetchAsideItems = () => {
     const asideObj = [
@@ -82,7 +83,7 @@ export const AthletesView = () => {
       
       <div>{fetchAsideItems()}</div>
       
-      <div className="p-5">
+      {/* <div className="p-5">
       <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
       <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
         <div className="text-start event-head mb-4 mt-4">
@@ -112,9 +113,48 @@ export const AthletesView = () => {
             ))}
           </Row>
         </div>
-      </div>
+      </div> */}
+      <Row className="justify-content-center mt-4">
+            <Col md={6}>
+              <div className='text-center ' style={{ backgroundColor: "#000000", borderRadius: "40px" }}>
+                
+                <div className='pt-3' style={{marginLeft:"-350px",backgroundColor:"white",width:"1000px", borderRadius: "40px" }}>
+                  <h4 style={{fontSize:"38px", color:"black"}}>College List</h4>
+                  <Table style={{backgroundColor:"",width:"1000px" }}  className='text-center mt-3 '>
 
-      {selectedStudent && (
+                <thead>
+                    <tr  >
+                        <th>Id</th>
+                        <th>College Name</th>
+                        <th>Students</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {colleges.map((college, index) => (
+                        <tr key={index}>
+                            <td>{college.id}</td>
+                            <td>{college.username}</td>
+                            <td ><button onClick={()=>{
+                                Studentspage(college.id)
+                            }} className='btn btn-outline-primary  ' style={{width:"400px"}}>View Students</button></td>
+
+
+                        </tr>
+                    ))}
+  
+                </tbody>
+            </Table>
+               
+                </div>
+              </div>
+            </Col>
+          </Row>
+
+
+
+
+      {/* {selectedStudent && (
         <Modal
           show={show}
           onHide={handleClose}
@@ -144,7 +184,7 @@ export const AthletesView = () => {
             <Button variant="secondary" onClick={handleClose}>Close</Button>
           </Modal.Footer>
         </Modal>
-      )}
+      )} */}
     </div>
   );
 };

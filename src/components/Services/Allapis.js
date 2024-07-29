@@ -92,6 +92,15 @@ export const getSponseredStudentListApi=async(header)=>{
 export const sponsorwinnerslistApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/sponsorapp/winner/`,header,"")
 }
+export const sponsorcollegeListApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/sponsorapp/college/`,"",header)
+}
+
+export const getsponsorStudentListApi=async(id,header)=>{
+    return await commonAPI('GET',`${BaseUrl}/sponsorapp/student/${id}/`,"",header)}
+
+
+
 
 
 //Athletes

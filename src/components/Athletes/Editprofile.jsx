@@ -121,7 +121,7 @@ function Editprofile({ profile }) {
                 <input
                 onChange={(e) => setProfileData({ ...profileData, bankname: e.target.value })}
                 type="text"
-                value={profileData.phno}
+                value={profileData.bankname}
                 placeholder="Bank Name"
                 className="form-control mb-3"
                 />
