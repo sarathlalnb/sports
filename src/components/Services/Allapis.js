@@ -15,9 +15,10 @@ export const userListApi=async(id)=>{
 export const sponsorListApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/sponsor/`,"",header)
 }
-export const getAllEventsApi=async(header)=>{
-    return await commonAPI('GET',`${BaseUrl}/adminapp/event/`,"",header)
-}
+export const getAllEventsApi = async (header, query = '') => {
+    const url = `${BaseUrl}/adminapp/event/${query}`;
+    return await commonAPI('GET', url, "", header);
+  };
 export const addEventApi=async(data,header)=>{
     return await CmommonAPI('POST',`${BaseUrl}/adminapp/event/`,data,header)
 }
@@ -31,6 +32,16 @@ export const EventdeleteApi=async(uid,reqHeader)=>{
     return await CmommonAPI('DELETE',`${BaseUrl}/adminapp/event/${uid}/`,"",reqHeader)
 }
 
+export const ViewwinnerslistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/adminapp/winner/`,"",header)
+}
+
+export const ViewwSponslistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/adminapp/sponsor/`,"",header)
+}
+export const ViewwNotificationsApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/adminapp/notifications/`,"",header)
+}
 
 
 //college
@@ -50,9 +61,15 @@ export const studentregApi=async(header)=>{
 export const studentlistApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/collegeapp/student/`,header,"")
 }
-// export const sponsorlistApi=async(header)=>{
-//     return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,header,"")
-// }
+export const Pstudents=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/collegeapp/participatedstudents/`,header,"")
+}
+export const collegesponsorlistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,header,"")
+}
+export const clgsponsorListApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/collegeapp/sponsors/`,header,"")
+}
 
  
 //sponsor
@@ -72,6 +89,9 @@ export const getSponseredStudentListApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/sponsorapp/sponsorship/`,header,"")
 }
 
+export const sponsorwinnerslistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/sponsorapp/winner/`,header,"")
+}
 
 
 //Athletes
@@ -80,8 +100,13 @@ export const athletesEventApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/athleteapp/event/`,"",header)
 }
 
-export const winnerslistApi=async(header)=>{
-    return await commonAPI('GET',`${BaseUrl}/athleteapp/mywins/`,"",header)
+export const winnersdistrictlistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/mywinsdistrict/`,"",header)
+}
+
+
+export const winnerstatelistApi=async(header)=>{
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/mywinsstate/`,"",header)
 }
 
 export const profileApi=async(header)=>{

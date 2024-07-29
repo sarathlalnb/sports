@@ -10,12 +10,13 @@ function Winner() {
     event: "", 
     position: "",
     student: "",
+    level:""
   });
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    const { student, event, position } = addWinner;
-    if (!student || !event || !position) {
+    const { student, event, position ,level } = addWinner;
+    if (!student || !event || !position|| !level) {
       alert("Please fill in all fields properly");
       return;
     }
@@ -23,6 +24,7 @@ function Winner() {
       event,
       position,
       student,
+      level
     };
     try {
       const token = localStorage.getItem('token');
@@ -82,6 +84,15 @@ function Winner() {
             onChange={(e) => setAddWinner({ ...addWinner, position: e.target.value })}
             required
             placeholder="Position"
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingInputPosition" label="District/State level" className="mb-3">
+          <Form.Control
+            type="text"
+            value={addWinner.level}
+            onChange={(e) => setAddWinner({ ...addWinner, level: e.target.value })}
+            required
+            placeholder="level"
           />
         </FloatingLabel>
         <div className='text-center'>

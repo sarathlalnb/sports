@@ -68,7 +68,7 @@ function StudentReg() {
 
   return (
     <div id='studentmain'>
-      <Link to="/athletes-home" style={{ textDecoration: "none", color: "white" }} >
+      <Link to="/college-home" style={{ textDecoration: "none", color: "white" }} >
       <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
       <div className='row'>
         <div className="mx-5 mt-5 col-4">

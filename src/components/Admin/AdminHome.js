@@ -108,12 +108,18 @@ function AdminHome() {
                   <CDBSidebarMenuItem icon='book'>Events</CDBSidebarMenuItem>
                 </Link>
                 <Link style={{ textDecoration: "none" }} to="/admin-winner">
+                  <CDBSidebarMenuItem icon='book'>Add Winners</CDBSidebarMenuItem>
+                </Link>
+                <Link style={{ textDecoration: "none" }} to="/admin-winnerview">
                   <CDBSidebarMenuItem icon='book'>Winners</CDBSidebarMenuItem>
                 </Link>
-                {/* <Link style={{ textDecoration: "none" }} to="/admin-students">
-                  <CDBSidebarMenuItem icon='book'>Students</CDBSidebarMenuItem>
-                </Link> */}
-           
+                
+                <Link style={{ textDecoration: "none" }} to="/admin-sponser">
+                  <CDBSidebarMenuItem icon='book'>Sponsers</CDBSidebarMenuItem>
+                </Link>
+                <Link style={{ textDecoration: "none" }} to="/admin-notifications">
+                  <CDBSidebarMenuItem icon='book'>Notifications</CDBSidebarMenuItem>
+                </Link>
               </CDBSidebarMenu>
             </CDBSidebarContent>
             <CDBSidebarFooter style={{ textAlign: 'center' }}>
@@ -134,20 +140,20 @@ function AdminHome() {
               </Navbar.Collapse>
             </Container>
           </Navbar>
+
           <Row className="justify-content-center mt-4">
             <Col md={6}>
-              <div className='text-center ' style={{ backgroundColor: "#000000", borderRadius: "10px" }}>
+              <div className='text-center ' style={{ backgroundColor: "#000000", borderRadius: "40px" }}>
                 
-                <div className='pt-3' style={{marginLeft:"-350px",backgroundColor:"white",width:"1000px"}}>
+                <div className='pt-3' style={{marginLeft:"-350px",backgroundColor:"white",width:"1000px", borderRadius: "40px" }}>
                   <h4 style={{fontSize:"38px", color:"black"}}>College List</h4>
-                  <Table style={{backgroundColor:"lightpink",width:"1000px" }}  className='text-center mt-3 '>
+                  <Table style={{backgroundColor:"",width:"1000px" }}  className='text-center mt-3 '>
 
                 <thead>
                     <tr  >
                         <th>Id</th>
-
-                        <th>college Name</th>
-                        <th>status</th>
+                        <th>College Name</th>
+                        <th>Students</th>
 
                     </tr>
                 </thead>
@@ -156,9 +162,9 @@ function AdminHome() {
                         <tr key={index}>
                             <td>{college.id}</td>
                             <td>{college.first_name}</td>
-                            <td><button onClick={()=>{
+                            <td ><button onClick={()=>{
                                 Studentspage(college.id)
-                            }} className='btn'>View Students</button></td>
+                            }} className='btn btn-outline-primary  ' style={{width:"400px"}}>View Students</button></td>
 
 
                         </tr>

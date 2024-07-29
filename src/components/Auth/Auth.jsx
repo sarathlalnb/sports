@@ -275,8 +275,8 @@ function Auth() {
                   checked={activeTab === 2}
                   onChange={() => handleTabChange(2)}
                 />
-                <label className="tab" htmlFor="radio-2">
-                  College
+                <label className="tab " style={{width:"100px"}} htmlFor="radio-2">
+                  College/School
                 </label>
                 <input
                   type="radio"

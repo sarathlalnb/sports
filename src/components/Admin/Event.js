@@ -6,139 +6,159 @@ import Button from "@mui/material/Button";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import { EventdeleteApi, addEventApi, getAllEventsApi } from "../Services/Allapis";
+import {
+  EventdeleteApi,
+  addEventApi,
+  getAllEventsApi,
+} from "../Services/Allapis";
+
 function Event() {
-  const [preview, setPreview] = useState("")
+  const [preview, setPreview] = useState("");
   const [addEvent, setAddEvent] = useState({
-    title: "", venue: "", date: "", description: "", image: ""
-  })
-
-  const setInputs = (e) => {
-    const { value, name } = e.target
-    setAddEvent({ ...addEvent, [name]: value })
-  }
-
-
+    title: "",
+    venue: "",
+    date: "",
+    description: "",
+    image: "",
+  });
   const [show, setShow] = useState(false);
-  const [token, setToken] = useState("")
+  const [token, setToken] = useState("");
+  const [listEvents, setListEvents] = useState(null);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [listEvents, setlistEvents] = useState(null)
 
+  const setInputs = (e) => {
+    const { value, name } = e.target;
+    setAddEvent({ ...addEvent, [name]: value });
+  };
 
-  const getListEvents = async () => {
-
-    if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
+  const getListEvents = async (start, end) => {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
       const reqHeader = { Authorization: `Token ${token}` };
-      const result = await getAllEventsApi(reqHeader);
- 
+      let query = "";
+      if (start && end) {
+        query = `search/?start_date=${start}&end_date=${end}`;
+      }
+      const result = await getAllEventsApi(reqHeader, query);
       const messages = result.data.sort(
         (a, b) => new Date(b.date) - new Date(a.date)
-        );
-console.log(messages);
-setlistEvents(messages);
+      );
+      setListEvents(messages);
     }
   };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"))
+      setToken(localStorage.getItem("token"));
+    } else {
+      setToken("");
     }
-    else {
-      setToken("")
+  }, []);
+
+  useEffect(() => {
+    getListEvents();
+  }, []);
+
+  useEffect(() => {
+    if (addEvent.image) {
+      setPreview(URL.createObjectURL(addEvent.image));
+    } else {
+      setPreview("");
     }
-  }, [])
+  }, [addEvent.image]);
 
   const handleAdd = async (e) => {
-    e.preventDefault()
-    const { title, venue, date, description, image } = addEvent
+    e.preventDefault();
+    const { title, venue, date, description, image } = addEvent;
     if (!title || !venue || !date || !description || !image) {
-      alert("please fill all datas")
+      alert("Please fill all fields");
     } else {
-
-
       try {
-        const reqBody = new FormData()
-        reqBody.append("title", title)
-        reqBody.append("venue", venue)
-        reqBody.append("date", date)
-        reqBody.append("description", description)
-        reqBody.append("image", image)
-
-        const result = await addEventApi(reqBody)
-        console.log(result);
+        const reqBody = new FormData();
+        reqBody.append("title", title);
+        reqBody.append("venue", venue);
+        reqBody.append("date", date);
+        reqBody.append("description", description);
+        reqBody.append("image", image);
+        await addEventApi(reqBody);
+        getListEvents();
       } catch (error) {
         console.log(error);
       }
     }
-  }
+  };
 
-  console.log(token);
-  useEffect(() => {
-    getListEvents()
-  }, [])
-  console.log(listEvents);
-  console.log(addEvent);
-  useEffect(() => {
+  const handleDelete = async (eid) => {
+    const token = localStorage.getItem("token");
+    const reqHeader = { Authorization: `Token ${token}` };
+    await EventdeleteApi(eid, reqHeader);
+    getListEvents();
+  };
 
-    if (addEvent.image) {
-      setPreview(URL.createObjectURL(addEvent.image))
-    }
-    else {
-      setPreview("")
-    }
+  const handleSearch = () => {
+    getListEvents(startDate, endDate);
+  };
 
-  }, [addEvent.image])
-  console.log(preview);
   if (listEvents === null) return <></>;
 
-  const handledelete = async (eid) => {
-    const token = localStorage.getItem('token');
-    const reqHeader = { Authorization: `Token ${token}` };
-    const resultdelete = await EventdeleteApi(eid,reqHeader);
-    getListEvents();
-  }
-  
   return (
     <div className="event1">
-      <Link to="/admin-home" style={{ textDecoration: "none", color: "white" }} >
-      <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
-      <Container className="m-2 p-4 ">
+      <Link to="/admin-home" style={{ textDecoration: "none", color: "white" }}>
+        <i className="fa-solid fa-backward fa-beat mx-2"></i>Back
+      </Link>
+      <Container className="m-2 p-4">
         <div>
           <h1 className="text-center">Events</h1>
-          
-          <div className="text-center ">
-            <Button
-              variant="contained"
-              onClick={handleShow}
-
-              className="e1 mt-5"
-            >
+          <div className="text-center">
+            <Button variant="contained" onClick={handleShow} className="e1 mt-5">
               Add Events
             </Button>
           </div>
         </div>
+        <div className="search-section mt-5">
+          <FloatingLabel controlId="floatingStartDate" label="Start Date" className="mb-3">
+            <Form.Control
+              type="date"
+              onChange={(e) => setStartDate(e.target.value)}
+              name="start_date"
+            />
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingEndDate" label="End Date" className="mb-3">
+            <Form.Control
+              type="date"
+              onChange={(e) => setEndDate(e.target.value)}
+              name="end_date"
+            />
+          </FloatingLabel>
+          <Button variant="contained" onClick={handleSearch}>
+            Search
+          </Button>
+        </div>
         <div>
           {listEvents?.map((i) => (
-            <div className="event2 mt-5 ms-5">
+            <div className="event2 mt-5 ms-5" key={i.id}>
               <Row className="m-2 p-3">
                 <Col>
-
-
-
                   <div className="text-white mt-5">
-                    <h1>  {i.title}</h1>
-                    <i class="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
-                    {i.date.slice(0, 10)}<br />
-                    <i class="fa-solid fa-location-dot ms-3 mt-2 mx-3 "></i>
-                    {i.venue}
-
-                    <br /><p className="mt-2">{i.description} </p>
-
-                    <button onClick={()=>handledelete(i.id)} className="btn "  >    <i style={{ color: "red", fontSize:"xxlarge" }} class="fa-solid fa-trash"></i></button>
-                
+                    <h1>{i.title}</h1>
+                    Event Id: {i.id} <br />
+                    <i className="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
+                    {i.date.slice(0, 10)}
+                    <br />
+                    <a href={i.venue}>
+                      <i className="fa-solid fa-location-dot ms-3 mt-2 mx-3"></i>
+                      {i.venue}
+                    </a>
+                    <br />
+                    <p className="mt-2">{i.description}</p>
+                    <button onClick={() => handleDelete(i.id)} className="btn">
+                      <i style={{ color: "red", fontSize: "xx-large" }} className="fa-solid fa-trash"></i>
+                    </button>
                   </div>
-
                 </Col>
                 <Col>
                   <img
@@ -149,12 +169,10 @@ setlistEvents(messages);
                   />
                 </Col>
               </Row>
-            </div>))}
-
+            </div>
+          ))}
         </div>
-      </Container>{" "}
-
-
+      </Container>
       <div className="text-center">
         <Modal show={show} onHide={handleClose} className="mt-5">
           <Modal.Header closeButton>
@@ -167,16 +185,26 @@ setlistEvents(messages);
               <Col>
                 <div>
                   <label htmlFor="img1">
-                    <input type="file" onChange={(e) => setAddEvent({ ...addEvent, ["image"]: e.target.files[0] })} id="img1" style={{ display: "none" }} />
+                    <input
+                      type="file"
+                      onChange={(e) =>
+                        setAddEvent({
+                          ...addEvent,
+                          image: e.target.files[0],
+                        })
+                      }
+                      id="img1"
+                      style={{ display: "none" }}
+                    />
                     <img
-
                       className="text-center w-100 mt-3"
-                      src={preview ? preview : "https://i.postimg.cc/vBb9w7gn/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg"}
+                      src={
+                        preview
+                          ? preview
+                          : "https://i.postimg.cc/vBb9w7gn/no-photo-or-blank-image-icon-loading-images-vector-37375020.jpg"
+                      }
                       alt=""
                     />
-
-
-
                   </label>
                 </div>
               </Col>
@@ -186,20 +214,36 @@ setlistEvents(messages);
                   label="Title"
                   className="mb-3"
                 >
-                  <Form.Control type="text" onChange={(e) => setInputs(e)} name="title" />
+                  <Form.Control
+                    type="text"
+                    onChange={setInputs}
+                    name="title"
+                  />
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingPassword">
-                  <Form.Control type="datetime-local" onChange={(e) => setInputs(e)} name="date" />
+                  <Form.Control
+                    type="datetime-local"
+                    onChange={setInputs}
+                    name="date"
+                  />
                 </FloatingLabel>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Venue"
                   className="mb-3 mt-3"
                 >
-                  <Form.Control type="text" onChange={(e) => setInputs(e)} name="venue" />
+                  <Form.Control
+                    type="text"
+                    onChange={setInputs}
+                    name="venue"
+                  />
                 </FloatingLabel>
                 <FloatingLabel controlId="floatingPassword" label="Description">
-                  <Form.Control type="text" onChange={(e) => setInputs(e)} name="description" />
+                  <Form.Control
+                    type="text"
+                    onChange={setInputs}
+                    name="description"
+                  />
                 </FloatingLabel>
               </Col>
             </Row>

@@ -25,8 +25,10 @@ import StudSpon from "./components/Sponsors/StudentSponsor/StudSpon";
 import MyEvents from "./components/Athletes/MyEvents";
 import AdminStudents from "./components/Admin/AdminStudents";
 import CollegeStudents from "./components/Admin/CollegeStudents";
-
-
+import ViewWinner from "./components/Admin/ViewWinner";
+import StudentWinners from "./components/Sponsors/StudentWinners";
+import Sponsors from "./components/Admin/Sponsors";
+import AdminNotifications from "./components/Admin/AdminNotifications";
 
 
 function App() {
@@ -36,34 +38,60 @@ function App() {
         <Routes>
           <Route path="/" element={<Landingpage />} />
           <Route path="/auth" element={<Auth />} />
-{/*admin */}
+          {/*admin */}
 
-<Route path="/admin-home"  element={<AdminHome></AdminHome>} ></Route>
-<Route path="/admin-event"  element={<Event></Event>} ></Route>
-<Route path="/admin-winner"  element={<Winner></Winner>} ></Route>
-{/* <Route path="/admin-students"  element={<AdminStudents></AdminStudents>} ></Route> */}
-<Route path="/admin-collegestudents/:id"  element={<CollegeStudents/>} ></Route>
+          <Route path="/admin-home" element={<AdminHome></AdminHome>}></Route>
+          <Route path="/admin-event" element={<Event></Event>}></Route>
+          <Route path="/admin-winner" element={<Winner></Winner>}></Route>
+          <Route
+            path="/admin-winnerview"
+            element={<ViewWinner></ViewWinner>}
+          ></Route>
+          <Route
+            path="/admin-students"
+            element={<AdminStudents></AdminStudents>}
+          ></Route>
+          <Route
+            path="/admin-sponser"
+            element={<Sponsors />}
+          ></Route>
+          <Route
+            path="/admin-notifications"
+            element={<AdminNotifications />}
+          ></Route>
+          <Route
+            path="/admin-collegestudents/:id"
+            element={<CollegeStudents />}
+          ></Route>
           {/* College */}
           <Route path="/college-home" element={<Home />} />
           <Route path="/college/request" element={<Request />}></Route>
           <Route path="/college/studentreg" element={<StudentReg />}></Route>
           <Route path="/college/studentlist" element={<Studentlist />}></Route>
-          <Route path="/college-request"  element={<RequestCollege></RequestCollege>} ></Route>
-<Route path="/post" element={<Post></Post>}></Route>
-<Route path="/college/sponsorview" element={<Sponsorview />}></Route>
+          <Route
+            path="/college-request"
+            element={<RequestCollege></RequestCollege>}
+          ></Route>
+          <Route path="/post" element={<Post></Post>}></Route>
+          <Route path="/college/sponsorview" element={<Sponsorview />}></Route>
           {/* Sponsor */}
           <Route path="/sponsor/home" element={<SponsorHome />}></Route>
-          <Route path="/sponsor/available-athletes" element={<AthletesView/>}></Route>
-         
-          <Route path="/sponsor/sponsered-student" element={<StudSpon/>}></Route>
+          <Route
+            path="/sponsor/available-athletes"
+            element={<AthletesView />}
+          ></Route>
 
+          <Route
+            path="/sponsor/sponsered-student"
+            element={<StudSpon />}
+          ></Route>
+          <Route path="/sponsor/winner" element={<StudentWinners />}></Route>
           {/* Athletes */}
-          <Route path="/athletes-home" element={<AtheletHome/>}></Route>
-          <Route path="/user-profile" element={<UserProfile/>}></Route>
-          <Route path="/Winnerslist" element={<Winnerslist/>}></Route>
-          <Route path="/mysponsorslist" element={<Mysponsor/>}></Route>
-          <Route path="/myEvents" element={<MyEvents/>}></Route>
-
+          <Route path="/athletes-home" element={<AtheletHome />}></Route>
+          <Route path="/user-profile" element={<UserProfile />}></Route>
+          <Route path="/Winnerslist" element={<Winnerslist />}></Route>
+          <Route path="/mysponsorslist" element={<Mysponsor />}></Route>
+          <Route path="/myEvents" element={<MyEvents />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

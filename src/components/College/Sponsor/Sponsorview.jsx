@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import './SponsorView.css';
-import { sponsorListApi } from '../../Services/Allapis';
+
 import { Link } from 'react-router-dom';
+import { clgsponsorListApi } from '../../Services/Allapis';
 
 
 function Sponsorview() {
@@ -15,7 +16,8 @@ function Sponsorview() {
         const reqHeader = {
           Authorization: `Token ${token}`,
         };
-        const result = await sponsorListApi(reqHeader);
+        const result = await clgsponsorListApi(reqHeader);
+        console.log(result);
         setRequest(result.data);
       }
     };
@@ -29,7 +31,7 @@ function Sponsorview() {
 
   return (
     <div className='text-center' id='main'>
-<Link to="/athletes-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
+<Link to="/college-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
 <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
 <div className='col-3'></div>
 
@@ -45,9 +47,9 @@ function Sponsorview() {
 <thead>
  <tr >
    <th>Id</th>
-  
+   <th>Name</th>
    <th>Email</th>
-   <th>Username</th>
+   <th>Student name</th>
    <th>Date-Joined</th>
 
  
@@ -58,9 +60,9 @@ function Sponsorview() {
 {request.map((Sponsor, index) => (
                 <tr key={index}>
                   <td>{Sponsor.id}</td>
-                  
-                  <td>{Sponsor.email}</td>
-                  <td>{Sponsor.username}</td>
+                  <td>{Sponsor.student_name}</td>
+                  <td>{Sponsor.sponsor_email}</td>
+                  <td>{Sponsor.student_name}</td>
                   <td>{Sponsor.date_joined}</td>
                  
                 </tr>

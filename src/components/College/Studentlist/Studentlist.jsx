@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import './studentlist.css';
-import { studentlistApi } from '../../Services/Allapis';
+import { Pstudents } from '../../Services/Allapis';
 import { Link } from 'react-router-dom';
 
 
@@ -14,8 +14,8 @@ function Studentlist() {
       const reqHeader = {
         Authorization: `Token ${token}`,
       };
-      const result = await studentlistApi(reqHeader); 
-     
+      const result = await Pstudents(reqHeader); 
+     console.log(result);
       setStudentlist(result.data);
      
     }
@@ -27,7 +27,7 @@ function Studentlist() {
 
   return (
     <div className='text-center' id='maindiv'>
-      <Link to="/athletes-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
+      <Link to="/college-home" style={{ textDecoration: "none", color: "white", marginLeft:"-1200px"}} >
       <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
       <div className='col-3'></div>
       <div className='text-center' id='innerdiv'>
@@ -38,8 +38,7 @@ function Studentlist() {
               <tr>
                 <th>Id</th>
                 <th>Student Name</th>
-                <th>Email</th>
-                <th>Username</th>
+                <th>Event Name</th>
                
               </tr>
             </thead>
@@ -47,9 +46,9 @@ function Studentlist() {
               {Studentlist.map((student, index) => (
                 <tr key={index}>
                   <td>{student.id}</td>
-                  <td>{student.first_name}</td>
-                  <td>{student.email}</td>
-                  <td>{student.username}</td>
+                  <td>{student.student_name}</td>
+                  <td>{student.event_name}</td>
+                  {/* <td>{student.events}</td> */}
                  
                 </tr>
               ))}

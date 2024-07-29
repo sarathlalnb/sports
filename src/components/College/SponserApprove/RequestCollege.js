@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Table from 'react-bootstrap/Table';
 import Button from '@mui/material/Button';
-import { sponsorListApi } from '../../Services/Allapis';
 import axios from 'axios';
 import './RequestAdmin.css'
+import { collegesponsorlistApi } from '../../Services/Allapis';
 import { Link } from 'react-router-dom';
 
 
@@ -16,7 +16,7 @@ function RequestCollege() {
         const reqHeader = {
           Authorization: `Token ${token}`,
         };
-        const result = await sponsorListApi(reqHeader); 
+        const result = await collegesponsorlistApi(reqHeader); 
         setRequest(result.data);
       }
     };
@@ -31,12 +31,12 @@ function RequestCollege() {
       
       const handleReqApproval = async(id)=>{
         try {
-          const response = await axios.post(`http://127.0.0.1:8000/adminapp/sponsor/${id}/approve_sponsor/`,{},{
+          const response = await axios.post(`http://127.0.0.1:8000/collegeapp/sponsors/${id}/approve_sponsor/`,{},{
             headers:{
               Authorization:`Token ${token}`
             }
           })
-          if( response.status>=200&& response.status<=300){
+          if( response.status>=200 && response.status<=300){
             alert("Req Approved")
             getRequest()
           }
@@ -44,13 +44,30 @@ function RequestCollege() {
           console.log(error);
         } 
       }
+
+      const handleReqDecline = async(id)=>{
+        try {
+          const response = await axios.post(`http://127.0.0.1:8000/collegeapp/sponsors/${id}/reject_sponsor/`,{},{
+            headers:{
+              Authorization:`Token ${token}`
+            }
+          })
+          if( response.status>=200&& response.status<=300){
+            alert("Req Declined")
+            getRequest()
+          }
+        } catch (error) {
+          console.log(error);
+        } 
+      }
+      
     
       if (request === null) return <></>;
     
       return (
         
         <div className='r1'>
-          <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
+          <Link to="/college-home" style={{ textDecoration: "none", color: "black"}} >
           <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
           <div className='m-5'>
             <h1 style={{ color: 'Black' }} className='text-center mt-3'>
@@ -60,9 +77,10 @@ function RequestCollege() {
               <thead>
                 <tr>
                   <th>#</th>
+                  <th>Student</th>
                   <th>Sponsor Name</th>
                   <th>E-mail</th>
-                  <th>Date Joined</th>
+                  {/* <th>Date Joined</th> */}
                   <th>Action</th>
                 </tr>
               </thead>
@@ -70,14 +88,18 @@ function RequestCollege() {
                 {request.map((i, index) => (
                   <tr key={index}>
                     <td>{index + 1}</td>
-                    <td>{i.username}</td>
-                    <td>{i.email}</td>
-                    <td>{i.date_joined.slice(0, 10)}</td>
+                    <td>{i.student_name}</td>
+                    <td>{i.sponsor_name}</td>
+                    <td>{i.sponsor_email}</td>
+                    {/* <td>{i.date_joined.slice(0, 10)}</td> */}
                     <td>
                       <Button style={{ backgroundColor: 'green', color: 'white' }}
                       onClick={()=>handleReqApproval(i?.id)}
                       
-                      >Approve</Button> 
+                      >Approve</Button>  <Button style={{ backgroundColor: 'red', color: 'white' }}
+                      onClick={()=>handleReqDecline(i?.id)}
+                      
+                      >Decline</Button>
                       {/* http://127.0.0.1:8000/adminapp/sponsor/2/approve_sponsor/ */}
                     </td>
                   </tr>
