@@ -28,7 +28,7 @@ const Post = () => {
   return (
     <Container>
       <div className="text-center mt-5 mb-5">
-      <Link to="/athletes-home" style={{ textDecoration: "none", color: "black",marginLeft:"-1200px" }} >
+      <Link to="/college-home" style={{ textDecoration: "none", color: "black",marginLeft:"-1200px" }} >
       <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
         <h3>
           <b style={{color:"brown"}} >Available Athletes</b>
@@ -40,8 +40,10 @@ const Post = () => {
             <Card style={{ width: "25rem" }}>
               <Card.Img variant="top" style={{ height: '150px' }} src={`http://127.0.0.1:8000`+i?.profile_picture} />
               <Card.Body>
+              <Card.Title><b>ID:</b> {i.id}</Card.Title>
                 <Card.Title><b>Name:</b> {i.first_name}</Card.Title>
                 <Card.Title><b>E-mail:</b> {i.email}</Card.Title>
+               
               </Card.Body>
             </Card>
           </Col>

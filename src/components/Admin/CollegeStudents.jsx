@@ -29,7 +29,7 @@ function CollegeStudents() {
               <Col key={index} className="m-2">
                 <Card style={{ width: "18rem" ,boxShadow:"2px 3px 5px black"}}>
                   <Card.Body>
-                    <Card.Title>{student.name}</Card.Title>
+                    <Card.Title>{student.user}</Card.Title>
                     <Card.Text>ID: {student.id}</Card.Text>
                     <Card.Text>Ph no:{student.ph_no}</Card.Text>
                     <Card.Text>Age:{student.age}</Card.Text>

@@ -133,9 +133,17 @@ function AdminHome() {
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                  <Stack direction="row" className='me-5'>
-                    <Avatar>L</Avatar>
-                  </Stack>
+                <Link style={{textDecoration:'none',color:'white'}} to={'/'}>  
+         {/* /innovator/profile */}
+            <div
+              className="sidebar-btn-wrapper ms-3"
+              style={{padding: '20px 5px'}}
+            >
+              <Stack direction="row" spacing={2}>
+              <Avatar >L</Avatar> <h5 className='mt-2'>Logout</h5>
+        </Stack>
+            </div>
+        </Link>
                 </Navbar.Text>
               </Navbar.Collapse>
             </Container>

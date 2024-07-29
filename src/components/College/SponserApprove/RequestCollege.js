@@ -17,6 +17,7 @@ function RequestCollege() {
           Authorization: `Token ${token}`,
         };
         const result = await collegesponsorlistApi(reqHeader); 
+        console.log(result);
         setRequest(result.data);
       }
     };

@@ -66,7 +66,7 @@ function Clgstdspn() {
     return (
         <div>
             <div className="p-5">
-                <Link to="/athletes-home" style={{ textDecoration: "none", color: "black" }}>
+                <Link to="/sponsor/home" style={{ textDecoration: "none", color: "black" }}>
                     <i className="fa-solid fa-backward fa-beat mx-2"></i>Back
                 </Link>
                 <div className="text-start event-head mb-4 mt-4">
@@ -83,8 +83,9 @@ function Clgstdspn() {
                                         <Card.Title>{student.name}</Card.Title>
                                         <Card.Text>Username: {student.user}</Card.Text>
                                         <Card.Text>ID: {student.id}</Card.Text>
-                                        <Card.Text>Email: {student.email}</Card.Text>
+                                        <Card.Text>Email: {student.email_name}</Card.Text>
                                         <Card.Text>Phn: {student.ph_no}</Card.Text>
+                                        <Card.Text>Achivements: {student.achivements}</Card.Text>
                                         <Button
                                             onClick={() => handleShow(student)}
                                             variant="outline-primary"

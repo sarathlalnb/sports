@@ -36,7 +36,7 @@ export const AthletesView = () => {
       const result = await sponsorcollegeListApi();
       console.log(result.data);
       setColleges(result.data);
-  }
+  }   
 
   useEffect(() => {
       getCollegeList()
@@ -82,10 +82,11 @@ export const AthletesView = () => {
     <div className="main-grid">
       
       <div>{fetchAsideItems()}</div>
-      
-      {/* <div className="p-5">
-      <Link to="/athletes-home" style={{ textDecoration: "none", color: "black"}} >
+      {/* <Link to="/sponsor/home" style={{ textDecoration: "none", color: "black"}} >
       <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
+       */}
+      {/* <div className="p-5">
+     
         <div className="text-start event-head mb-4 mt-4">
           <h3>
             <b>Available Athletes</b>

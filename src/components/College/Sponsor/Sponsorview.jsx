@@ -60,7 +60,7 @@ function Sponsorview() {
 {request.map((Sponsor, index) => (
                 <tr key={index}>
                   <td>{Sponsor.id}</td>
-                  <td>{Sponsor.student_name}</td>
+                  <td>{Sponsor.sponsor_name}</td>
                   <td>{Sponsor.sponsor_email}</td>
                   <td>{Sponsor.student_name}</td>
                   <td>{Sponsor.date_joined}</td>

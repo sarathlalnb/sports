@@ -34,7 +34,7 @@ function Sponsors() {
                 <th>Username</th>
                 <th>Email</th>
                 <th>Date Joined</th>
-                <th>Admin Approved</th>
+                <th> Approved</th>
               </tr>
             </thead>
             <tbody>
