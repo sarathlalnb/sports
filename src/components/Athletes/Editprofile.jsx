@@ -5,45 +5,42 @@ import { updateprofileResponseContext } from '../../ContextAPI/ContextShare';
 import { updateAUserprofileAPI } from '../Services/Allapis';
 
 function Editprofile({ profile }) {
-  console.log(profile);
-
   const [show, setShow] = useState(false);
 
   const { updateprofileResponse, setUpdateprofileResponse } = useContext(updateprofileResponseContext);
 
-  const [profileData, setProfileData] = useState({
-    username: profile.user,
-    age: profile.age,
-    phno: profile.ph_no,
-    adno: profile.adm_no
-  });
+  const initialProfileData = {
+   
+  };
 
-  console.log(profileData);
+  const [profileData, setProfileData] = useState(initialProfileData);
 
   const handleClose = () => {
     setShow(false);
-    setProfileData({
-      username: profile.user,
-      age: profile.age,
-      phno: profile.ph_no,
-      adno: profile.adm_no
-    });
+    setProfileData(initialProfileData);
   };
 
   const handleShow = () => setShow(true);
 
   const updateProfile = async () => {
-    const { username, adno, age, phno } = profileData;
+    const changedData = {};
+    Object.keys(profileData).forEach(key => {
+      if (profileData[key] !== profile[key]) {
+        changedData[key] = profileData[key];
+      }
+    });
+
+    if (Object.keys(changedData).length === 0) {
+      alert('No changes made.');
+      return;
+    }
 
     const reqBody = new FormData();
-    reqBody.append('username', username);
-    reqBody.append('adno', adno);
-    reqBody.append('age', age);
-    reqBody.append('phno', phno);
+    for (const key in changedData) {
+      reqBody.append(key, changedData[key]);
+    }
 
     const token = localStorage.getItem('token');
-    console.log(token);
-
     if (!token) {
       alert('Token not found. Please log in again.');
       return;
@@ -53,12 +50,8 @@ function Editprofile({ profile }) {
       Authorization: `Token ${token}`
     };
 
-    console.log('Token:', token);
-    console.log('Request Headers:', reqHeader);
-
     try {
       const result = await updateAUserprofileAPI(reqBody, reqHeader);
-      console.log(result);
       if (result.status === 200) {
         alert('Profile updated');
         setUpdateprofileResponse(result.data);
@@ -84,16 +77,16 @@ function Editprofile({ profile }) {
           <div className="row">
             <div className="col-10 text-center mx-5 p-4">
               <input
-                onChange={(e) => setProfileData({ ...profileData, username: e.target.value })}
+                onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
                 type="text"
-                value={profileData.username}
-                placeholder="Username"
+                value={profileData.name}
+                placeholder="Name"
                 className="form-control mb-3"
               />
               <input
-                onChange={(e) => setProfileData({ ...profileData, adno: e.target.value })}
+                onChange={(e) => setProfileData({ ...profileData, adm_no: e.target.value })}
                 type="text"
-                value={profileData.adno}
+                value={profileData.adm_no}
                 placeholder="Admission Number"
                 className="form-control mb-3"
               />
@@ -105,26 +98,61 @@ function Editprofile({ profile }) {
                 className="form-control mb-3"
               />
               <input
-                onChange={(e) => setProfileData({ ...profileData, phno: e.target.value })}
+                onChange={(e) => setProfileData({ ...profileData, ph_no: e.target.value })}
                 type="text"
-                value={profileData.phno}
+                value={profileData.ph_no}
                 placeholder="Phone Number"
                 className="form-control mb-3"
               />
-                <input
+              <input
+                onChange={(e) => setProfileData({ ...profileData, photo: e.target.value })}
+                type="text"
+                value={profileData.photo}
+                placeholder="Photo URL"
+                className="form-control mb-3"
+              />
+              <input
+                onChange={(e) => setProfileData({ ...profileData, dob: e.target.value })}
+                type="text"
+                value={profileData.dob}
+                placeholder="Date of Birth"
+                className="form-control mb-3"
+              />
+              <input
+                onChange={(e) => setProfileData({ ...profileData, bankname: e.target.value })}
+                type="text"
+                value={profileData.bankname}
+                placeholder="Bank Name"
+                className="form-control mb-3"
+              />
+              <input
                 onChange={(e) => setProfileData({ ...profileData, accno: e.target.value })}
                 type="text"
                 value={profileData.accno}
                 placeholder="Account Number"
                 className="form-control mb-3"
               />
-                <input
-                onChange={(e) => setProfileData({ ...profileData, bankname: e.target.value })}
+              <input
+                onChange={(e) => setProfileData({ ...profileData, ifsc_code: e.target.value })}
                 type="text"
-                value={profileData.bankname}
-                placeholder="Bank Name"
+                value={profileData.ifsc_code}
+                placeholder="IFSC Code"
                 className="form-control mb-3"
-                />
+              />
+              <input
+                onChange={(e) => setProfileData({ ...profileData, achivements: e.target.value })}
+                type="text"
+                value={profileData.achivements}
+                placeholder="Achievements"
+                className="form-control mb-3"
+              />
+              <input
+                onChange={(e) => setProfileData({ ...profileData, interest: e.target.value })}
+                type="text"
+                value={profileData.interest}
+                placeholder="Interest"
+                className="form-control mb-3"
+              />
             </div>
           </div>
         </Modal.Body>
