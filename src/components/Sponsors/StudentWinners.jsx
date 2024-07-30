@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
 import { sponsorwinnerslistApi } from '../Services/Allapis';
+import { Link } from 'react-router-dom';
 
 function StudentWinners() {
     const [athletesEvents, setAthletesEvents] = useState([]);
@@ -19,7 +20,9 @@ function StudentWinners() {
       };
   return (
     <div className='text-center' id='maindiv2'>
-
+ <div className='col-3'></div>
+      <Link to="/sponsor/home" style={{ textDecoration: "none", color: "black",marginLeft:"-1200px"}} >
+          <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
     <div className='col-3'></div>
     
     <div className='text-center '  id='innerdiv' >
@@ -35,8 +38,8 @@ function StudentWinners() {
         <th>Sl no.</th>
         <th>Event Id</th>
        <th>Event Name</th>
-       <th>Student</th>
-      
+       <th>Student Id</th>
+       <th>Student Name</th>
        <th>Position</th>
        <th>Level</th>
        
@@ -49,7 +52,8 @@ function StudentWinners() {
                       <td>{index+1}</td>
                       <td>{student.event}</td>
                       <td>{student.event_name}</td>
-                      <td>{student.student_name}</td>
+                      <td>{student.student}</td>
+                      <td>{}</td>
                       <td>{student.position}</td>
                       <td>{student.level}</td>
                       

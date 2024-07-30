@@ -29,6 +29,7 @@ import ViewWinner from "./components/Admin/ViewWinner";
 import StudentWinners from "./components/Sponsors/StudentWinners";
 import Sponsors from "./components/Admin/Sponsors";
 import AdminNotifications from "./components/Admin/AdminNotifications";
+import Clgstdspn from "./components/Sponsors/AthletesView/Clgstdspn";
 
 
 function App() {
@@ -86,6 +87,8 @@ function App() {
             element={<StudSpon />}
           ></Route>
           <Route path="/sponsor/winner" element={<StudentWinners />}></Route>
+          <Route path="/sponsor/students/:id" element={<Clgstdspn />}></Route>
+          
           {/* Athletes */}
           <Route path="/athletes-home" element={<AtheletHome />}></Route>
           <Route path="/user-profile" element={<UserProfile />}></Route>

@@ -19,13 +19,13 @@ const Home = () => {
   const fetchAsideItems = () => {
     const asideObj = [
       { text: "Dashboard", link: "/college-home", icon: "th-large" },
-      { text: "Requests", link: "/college/request", icon: "sticky-note" },
+      { text: "Sponsored ", link: "/college/request", icon: "sticky-note" },
       { text: "Athletes", link: "/post", icon: "sticky-note" },
       { text: "Student Registration", link: "/college/studentreg", icon: "sticky-note" },
-      { text: "Events ", link: "/college/studentlist", icon: "sticky-note" },
+     
       { text: "Sponsors List", link: "/college/sponsorview", icon: "sticky-note" },
       { text: "Sponser Approve", link: "/college-request", icon: "sticky-note" },
-      { text: "Student Registration", link: "/college/studentreg", icon: "sticky-note" },
+     
       { text: "View Winners List", link: "/admin-winnerview", icon: "sticky-note" },
     ];
     return <Aside asideObj={asideObj} />;
