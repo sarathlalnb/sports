@@ -6,20 +6,26 @@ import { updateAUserprofileAPI } from '../Services/Allapis';
 
 function Editprofile({ profile }) {
   const [show, setShow] = useState(false);
-
   const { updateprofileResponse, setUpdateprofileResponse } = useContext(updateprofileResponseContext);
-
   const initialProfileData = {
-   
+    name: '',
+    adm_no: '',
+    age: '',
+    ph_no: '',
+    photo: null, // Changed to null for file
+    dob: '',
+    bankname: '',
+    accno: '',
+    ifsc_code: '',
+    achivements: '',
+    interest: ''
   };
-
   const [profileData, setProfileData] = useState(initialProfileData);
 
   const handleClose = () => {
     setShow(false);
     setProfileData(initialProfileData);
   };
-
   const handleShow = () => setShow(true);
 
   const updateProfile = async () => {
@@ -37,7 +43,11 @@ function Editprofile({ profile }) {
 
     const reqBody = new FormData();
     for (const key in changedData) {
-      reqBody.append(key, changedData[key]);
+      if (key === 'photo' && changedData[key]) {
+        reqBody.append(key, changedData[key]); // Append file object directly
+      } else {
+        reqBody.append(key, changedData[key]);
+      }
     }
 
     const token = localStorage.getItem('token');
@@ -65,10 +75,13 @@ function Editprofile({ profile }) {
     }
   };
 
+  const handleFileChange = (e) => {
+    setProfileData({ ...profileData, photo: e.target.files[0] }); // Handle file input
+  };
+
   return (
     <>
       <i onClick={handleShow} className="fa-solid fa-pen-to-square text-success"></i>
-
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <Modal.Title>Edit profile</Modal.Title>
@@ -105,10 +118,8 @@ function Editprofile({ profile }) {
                 className="form-control mb-3"
               />
               <input
-                onChange={(e) => setProfileData({ ...profileData, photo: e.target.value })}
-                type="text"
-                value={profileData.photo}
-                placeholder="Photo URL"
+                onChange={handleFileChange} // Use file input handler
+                type="file"
                 className="form-control mb-3"
               />
               <input

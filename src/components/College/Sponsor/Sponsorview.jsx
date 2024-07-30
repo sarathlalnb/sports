@@ -50,7 +50,7 @@ function Sponsorview() {
    <th>Name</th>
    <th>Email</th>
    <th>Student name</th>
-   <th>Date-Joined</th>
+   
 
  
    
@@ -63,7 +63,7 @@ function Sponsorview() {
                   <td>{Sponsor.sponsor_name}</td>
                   <td>{Sponsor.sponsor_email}</td>
                   <td>{Sponsor.student_name}</td>
-                  <td>{Sponsor.date_joined}</td>
+            
                  
                 </tr>
               ))}

@@ -64,6 +64,7 @@ function Clgstdspn() {
     useEffect(() => {
         getStudentlist();
     }, []);
+    const photoUrl = sponsorStudentList.photo ? `http://127.0.0.1:8000/${sponsorStudentList.photo}` : "default-image-url";
 
     return (
         <div>
@@ -80,14 +81,25 @@ function Clgstdspn() {
                     <Row className="m-5">
                         {sponsorStudentList.map((student, index) => (
                             <Col key={index} className="m-2">
-                                <Card style={{ width: "18rem" }}>
+                                <Card style={{ width: "18rem",boxShadow:"1px 5px 8px 1px black" }}>
                                     <Card.Body>
-                                        <Card.Title>{student.name}</Card.Title>
+
+                                        <Card.Title>Name:{student.name}</Card.Title>
+                                        <img
+                style={{
+                  borderRadius: "50%",
+                  width: "100px",
+                  height: "100px",
+                }}
+                src={`http://127.0.0.1:8000/${student.photo}`}
+                alt="Profile"
+              />
                                         <Card.Text>Username: {student.user}</Card.Text>
                                         <Card.Text>ID: {student.id}</Card.Text>
                                         <Card.Text>Email: {student.email_name}</Card.Text>
                                         <Card.Text>Phn: {student.ph_no}</Card.Text>
                                         <Card.Text>Achivements: {student.achivements}</Card.Text>
+                                        <Card.Text>Interest: {student.interest}</Card.Text>
                                         <Button
                                             onClick={() => handleShow(student)}
                                             variant="outline-primary"
@@ -126,6 +138,7 @@ function Clgstdspn() {
                             className="form-control m-2"
                             type="text"
                         />
+                        <p>Bank Details:{selectedStudent.bankname} <br />AccountNo:{selectedStudent.accno}</p>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" onClick={handleSponsor}>Sponsor Now</Button>

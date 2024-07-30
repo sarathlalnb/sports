@@ -78,7 +78,7 @@ function UserProfile() {
             <label htmlFor="name">Name</label>
             <FloatingLabel
               controlId="floatingName"
-              label={athletesprofile.user}
+              label={athletesprofile.name}
             >
               <Form.Control type="text" placeholder="Name" readOnly />
             </FloatingLabel>

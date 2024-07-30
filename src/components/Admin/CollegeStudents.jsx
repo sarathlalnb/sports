@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
 import { userListApi } from '../Services/Allapis';
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function CollegeStudents() {
 
@@ -24,6 +24,10 @@ function CollegeStudents() {
     <div>
 
 <div>
+
+<Link to="/admin-home" style={{ textDecoration: "none", color: "black",marginLeft:"100px" }} >
+<i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
+
           <Row className="m-5">
             {Studentlist.map((student, index) => (
               <Col key={index} className="m-2">

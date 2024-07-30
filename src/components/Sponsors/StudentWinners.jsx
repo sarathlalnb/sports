@@ -53,7 +53,7 @@ function StudentWinners() {
                       <td>{student.event}</td>
                       <td>{student.event_name}</td>
                       <td>{student.student}</td>
-                      <td>{}</td>
+                      <td>{student.student_name}</td>
                       <td>{student.position}</td>
                       <td>{student.level}</td>
                       

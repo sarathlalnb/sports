@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { ViewwSponslistApi } from "../Services/Allapis";
+import { Link } from "react-router-dom";
 
 function Sponsors() {
   const [sponsors, setSponsors] = useState([]);
@@ -22,7 +23,8 @@ function Sponsors() {
   return (
     <div className="text-center" id="maindiv2">
       <div className="col-3"></div>
-
+      <Link to="/admin-home" style={{ textDecoration: "none", color: "white",marginLeft:"-1200px" }} >
+      <i class="fa-solid fa-backward fa-beat mx-2"></i>Back</Link>
       <div className="text-center " id="innerdiv">
         <h4>Sponsors</h4>
 

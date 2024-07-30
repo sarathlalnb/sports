@@ -136,7 +136,7 @@ export const EventregApi=async(payload,header)=>{
 }
 
 export const UserEventlistApi=async(header)=>{
-    return await commonAPI('GET',`${BaseUrl}//parteventget/`,header,"")
+    return await commonAPI('GET',`${BaseUrl}/athleteapp/parteventget/`,header,"")
 }
 export const ViewwNotificationsApi=async(header)=>{
     return await commonAPI('GET',`${BaseUrl}/adminapp/notifications/`,"",header)
