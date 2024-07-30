@@ -135,13 +135,8 @@ function Editprofile({ profile }) {
               <input
                 onChange={(e) => setProfileData({ ...profileData, ifsc_code: e.target.value })}
                 type="text"
-<<<<<<< HEAD
                 value={profileData.ifsc_code}
                 placeholder="IFSC Code"
-=======
-                value={profileData.bankname}
-                placeholder="Bank Name"
->>>>>>> b092736fbf22355dd6f74a733c330e6ada5630b3
                 className="form-control mb-3"
               />
               <input
