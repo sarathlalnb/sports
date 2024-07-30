@@ -18,6 +18,7 @@ function Event() {
     title: "",
     venue: "",
     date: "",
+    due_date:"",
     description: "",
     image: "",
   });
@@ -44,6 +45,7 @@ function Event() {
         query = `search/?start_date=${start}&end_date=${end}`;
       }
       const result = await getAllEventsApi(reqHeader, query);
+      console.log(result);
       const messages = result.data.sort(
         (a, b) => new Date(b.date) - new Date(a.date)
       );
@@ -73,8 +75,8 @@ function Event() {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    const { title, venue, date, description, image } = addEvent;
-    if (!title || !venue || !date || !description || !image) {
+    const { title, venue, date, due_date, description, image } = addEvent;
+    if (!title || !venue || !date || !due_date || !description || !image) {
       alert("Please fill all fields");
     } else {
       try {
@@ -82,10 +84,12 @@ function Event() {
         reqBody.append("title", title);
         reqBody.append("venue", venue);
         reqBody.append("date", date);
+        reqBody.append("due_date", due_date);
         reqBody.append("description", description);
         reqBody.append("image", image);
         await addEventApi(reqBody);
         getListEvents();
+        alert("Event added Successfully")
       } catch (error) {
         console.log(error);
       }
@@ -119,25 +123,7 @@ function Event() {
             </Button>
           </div>
         </div>
-        <div className="search-section mt-5">
-          <FloatingLabel controlId="floatingStartDate" label="Start Date" className="mb-3">
-            <Form.Control
-              type="date"
-              onChange={(e) => setStartDate(e.target.value)}
-              name="start_date"
-            />
-          </FloatingLabel>
-          <FloatingLabel controlId="floatingEndDate" label="End Date" className="mb-3">
-            <Form.Control
-              type="date"
-              onChange={(e) => setEndDate(e.target.value)}
-              name="end_date"
-            />
-          </FloatingLabel>
-          <Button variant="contained" onClick={handleSearch}>
-            Search
-          </Button>
-        </div>
+       
         <div>
           {listEvents?.map((i) => (
             <div className="event2 mt-5 ms-5" key={i.id}>
@@ -146,14 +132,20 @@ function Event() {
                   <div className="text-white mt-5">
                     <h1>{i.title}</h1>
                     Event Id: {i.id} <br />
+                    Date:
                     <i className="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
                     {i.date.slice(0, 10)}
+                    <br /> 
+                    Due Date:
+                    <i className="fa-solid fa-calendar-day ms-3 mt-2 mx-2"></i>
+                    {i.due_date}
                     <br />
                     <a href={i.venue}>
                       <i className="fa-solid fa-location-dot ms-3 mt-2 mx-3"></i>
                       {i.venue}
                     </a>
                     <br />
+
                     <p className="mt-2">{i.description}</p>
                     <button onClick={() => handleDelete(i.id)} className="btn">
                       <i style={{ color: "red", fontSize: "xx-large" }} className="fa-solid fa-trash"></i>
@@ -220,6 +212,7 @@ function Event() {
                     name="title"
                   />
                 </FloatingLabel>
+
                 <FloatingLabel controlId="floatingPassword">
                   <Form.Control
                     type="datetime-local"
@@ -227,6 +220,18 @@ function Event() {
                     name="date"
                   />
                 </FloatingLabel>
+
+                <FloatingLabel controlId="floatingPassword">
+                  
+
+                  <Form.Control
+                  label="due_date"
+                    type="datetime-local"
+                    onChange={setInputs}
+                    name="due_date"
+                  />
+                </FloatingLabel>
+
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Venue"

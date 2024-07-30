@@ -117,9 +117,7 @@ function AdminHome() {
                 <Link style={{ textDecoration: "none" }} to="/admin-sponser">
                   <CDBSidebarMenuItem icon='book'>Sponsers</CDBSidebarMenuItem>
                 </Link>
-                <Link style={{ textDecoration: "none" }} to="/admin-notifications">
-                  <CDBSidebarMenuItem icon='book'>Notifications</CDBSidebarMenuItem>
-                </Link>
+          
               </CDBSidebarMenu>
             </CDBSidebarContent>
             <CDBSidebarFooter style={{ textAlign: 'center' }}>
@@ -169,7 +167,7 @@ function AdminHome() {
                     {colleges.map((college, index) => (
                         <tr key={index}>
                             <td>{college.id}</td>
-                            <td>{college.first_name}</td>
+                            <td>{college.username}</td>
                             <td ><button onClick={()=>{
                                 Studentspage(college.id)
                             }} className='btn btn-outline-primary  ' style={{width:"400px"}}>View Students</button></td>

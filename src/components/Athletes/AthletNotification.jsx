@@ -1,24 +1,24 @@
+
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { ViewwNotificationsApi } from '../Services/Allapis';
 
-const AdminNotifications = () => {
-  const [notifications, setNotifications] = useState([]);
+function AthletNotification() {
+    const [notifications, setNotifications] = useState([]);
 
-  useEffect(() => {
-    getNotificationsList();
-  }, []);
-
-  const getNotificationsList = async () => {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-      const reqHeader = { Authorization: `Token ${token}` };
-      const result = await ViewwNotificationsApi(reqHeader);
-      console.log(result.data);
-      setNotifications(result.data);
-    }
-  };
-
+    useEffect(() => {
+      getNotificationsList();
+    }, []);
+  
+    const getNotificationsList = async () => {
+      if (localStorage.getItem("token")) {
+        const token = localStorage.getItem("token");
+        const reqHeader = { Authorization: `Token ${token}` };
+        const result = await ViewwNotificationsApi(reqHeader);
+        console.log(result.data);
+        setNotifications(result.data);
+      }
+    };
   return (
     <div className="text-center">
       <h4>Notifications</h4>
@@ -43,7 +43,7 @@ const AdminNotifications = () => {
         </Table>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminNotifications;
+export default AthletNotification

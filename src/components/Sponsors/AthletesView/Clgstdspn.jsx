@@ -35,10 +35,12 @@ function Clgstdspn() {
             try {
                 const results = await studsponAPI(sid, payload, reqHeader);
                 console.log(results);
+                alert("Sponsoring successfull")
                 // Optionally, you could refresh the list of students here
                 getStudentlist();
             } catch (error) {
                 console.error('Error sponsoring student:', error);
+                alert("'Error sponsoring student:', error")
             }
         }
     };

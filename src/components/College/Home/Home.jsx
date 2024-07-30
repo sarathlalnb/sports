@@ -64,17 +64,17 @@ const Home = () => {
       <div>{fetchAsideItems()}</div>
       <Container className="mt-4 home-body">
         <div>
-          <div className="text-start event-head mb-4 sticky-top">
+          <div id="Availableevents" className="text-start event-head mb-4 sticky-top">
             <h3><b>Available Events</b></h3>
           </div>
           <Row>
-            <Col>
+            <Col >
               {currentEvents.map((i) => (
-                <MDBCard key={i.id} style={{ height: "200px" }} className="mt-3">
+                <MDBCard id="crd" key={i.id} style={{ height: "200px" }} className="mt-3">
                   <MDBRow className="g-0">
                     <MDBCol md="5">
                       <MDBCardImage
-                        style={{ height: "200px", width: "100%" }}
+                        style={{ height: "200px", width: "100%",borderRadius:" 20px" }}
                         src={`http://127.0.0.1:8000`+i.image}
                         alt=" "
                       />
@@ -83,6 +83,8 @@ const Home = () => {
                       <MDBCardBody>
                         <MDBCardTitle>{i.title}</MDBCardTitle>
                         <MDBCardText>{i.description}</MDBCardText>
+                        <MDBCardText>   <a href={i.venue}><i class="fa-solid fa-location-dot fa-bounce"></i> Click here for Location</a></MDBCardText>
+                     
                         <MDBCardText>
                           <small className="text-muted">{i.date.slice(0, 10)}</small>
                         </MDBCardText>
